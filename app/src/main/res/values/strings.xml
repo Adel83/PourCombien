@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">PourCombien</string>
+    <string name="defi">Défi</string>
+    <string name="download_picture">Télécharger photo</string>
 </resources>

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1098513233842",
+    "firebase_url": "https://pour-combien-tu.firebaseio.com",
+    "project_id": "pour-combien-tu",
+    "storage_bucket": "pour-combien-tu.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1098513233842:android:eaa6568a62b80f82",
+        "android_client_info": {
+          "package_name": "fr.isen.chakouri.pourcombien"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1098513233842-7mghaf1q3i62f5ibc2rh1toh0huls7gt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "fr.isen.chakouri.pourcombien",
+            "certificate_hash": "ec52b04812b7829c9beb750aa7e79e69dfa0ae20"
+          }
+        },
+        {
+          "client_id": "1098513233842-ajcj98ag2kj5lpiee0927p2g2bu75htg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDk2HuFzhFrR1t6u2QtGNjwzxpcu1pBjTY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1098513233842-ajcj98ag2kj5lpiee0927p2g2bu75htg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
