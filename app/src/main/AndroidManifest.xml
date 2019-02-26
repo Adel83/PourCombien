@@ -13,10 +13,22 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
+        <activity android:name=".Activities.MatchActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
         <activity android:name=".Activities.NextStepActivity">
       </activity>
         <activity android:name=".Activities.DownloadImageActivity">
           </activity>
+        <activity android:name=".Activities.HomeActivity">
+
+        </activity>
+        <activity android:name=".Activities.NotMatchActivity">
+        </activity>
         <activity android:name=".Activities.HomeActivity">
         </activity>
         <activity android:name=".Activities.AddChallengeActivity">
@@ -28,11 +40,7 @@
         <activity android:name=".Activities.SignUpActivity">
         </activity>
         <activity android:name=".Activities.UploadImageActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
         <activity android:name=".Activities.CreateChallengeActivity">
         </activity>
