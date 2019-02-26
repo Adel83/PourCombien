@@ -47,7 +47,6 @@ dependencies {
     implementation 'com.firebaseui:firebase-ui-storage:4.3.1'
     implementation 'com.squareup.picasso:picasso:2.71828'
 
-
     // connexions
     implementation 'com.google.firebase:firebase-auth:16.1.0'
 
