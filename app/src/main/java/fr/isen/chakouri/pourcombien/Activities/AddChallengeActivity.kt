@@ -13,7 +13,6 @@ import kotlinx.android.synthetic.main.activity_add_challenge.*
 
 class AddChallengeActivity : AppCompatActivity() {
 
-
         private var levelChoosen: Level? = null
         private lateinit var database: FirebaseDatabase
         private lateinit var myRef: DatabaseReference
@@ -31,13 +30,11 @@ class AddChallengeActivity : AppCompatActivity() {
                 myRef.child(myRef.push().key.toString()).setValue(Challenge(0, challengeText.text.toString(), myRef.push().key.toString(), levelChoosen?.convertInt))
             }
         }
-
     }
 
     fun onRadioButtonClicked(view: View) {
         if(view is RadioButton) {
             val checked = view.isChecked
-
             when(view.id){
                 rButtonSilly.id ->
                     if(checked){
