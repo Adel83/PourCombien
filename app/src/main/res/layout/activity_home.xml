@@ -17,7 +17,7 @@
             android:layout_marginEnd="8dp"
             android:hint="Joueur 2"
             android:textColor="@color/colorAccent" app:layout_constraintHorizontal_bias="0.507"
-            android:layout_marginTop="19dp" app:layout_constraintTop_toBottomOf="@+id/name1Field"/>
+            android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/name1Field"/>
     <EditText
             android:layout_width="228dp"
             android:layout_height="56dp"
@@ -28,7 +28,7 @@
             android:textColor="@color/colorAccent"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
-            android:layout_marginTop="19dp" app:layout_constraintTop_toBottomOf="@+id/name2Field"/>
+            android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/name2Field"/>
     <ImageView
             android:layout_width="344dp"
             android:layout_height="243dp" app:srcCompat="@drawable/logo"
@@ -50,9 +50,9 @@
             android:layout_width="47dp"
             android:layout_height="51dp"
             android:clickable="true" app:srcCompat="?attr/actionModeCloseDrawable"
-            android:id="@+id/addFieldButton" android:layout_marginTop="19dp"
+            android:id="@+id/addFieldButton" android:layout_marginTop="36dp"
             app:layout_constraintTop_toBottomOf="@+id/name3Field" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="93dp"/>
+            android:layout_marginStart="32dp"/>
     <Button
             android:text="Jouer"
             android:layout_width="143dp"
