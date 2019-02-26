@@ -7,7 +7,7 @@ import com.google.firebase.database.FirebaseDatabase
 import fr.isen.chakouri.pourcombien.Models.Challenge
 import fr.isen.chakouri.pourcombien.R
 
-class GetChallenges : AppCompatActivity() {
+class GetChallengesActivity : AppCompatActivity() {
 
     // connexion firebase
     private lateinit var database: FirebaseDatabase

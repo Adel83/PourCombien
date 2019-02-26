@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "1098513233842-6iekjqtjafeosbsgsjsuj4i18qi90rvs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "fr.isen.chakouri.pourcombien",
+            "certificate_hash": "65c240fb139d4155cc05ccb21388286037cb70db"
+          }
+        },
+        {
           "client_id": "1098513233842-ajcj98ag2kj5lpiee0927p2g2bu75htg.apps.googleusercontent.com",
           "client_type": 3
         }

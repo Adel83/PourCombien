@@ -2,4 +2,14 @@
     <string name="app_name">PourCombien</string>
     <string name="defi">Défi</string>
     <string name="download_picture">Télécharger photo</string>
+    <string name="textSignin">Sign In</string>
+    <string name="textNom">LastName</string>
+    <string name="textPrenom">FirstName</string>
+    <string name="textPsw">Password</string>
+    <string name="textPseudo">Nickname</string>
+    <string name="signinSubmit">SUBMIT</string>
+    <string name="textMail">Email</string>
+    <string name="buttonSignIn">Sign In</string>
+    <string name="submitButtonLogIn">SUBMIT</string>
+    <string name="passwordFieldLogIn">Password</string>
 </resources>
