@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="TextStyle2" parent="AppTheme">
+        <item name="android:letterSpacing">0.09</item>
+    </style>
+
+    <style name="TextStyle3" parent="AppTheme">
+        <item name="android:letterSpacing">0.09</item>
+    </style>
+
+    <style name="TextStyle4" parent="AppTheme">
+        <item name="android:letterSpacing">0.09</item>
+    </style>
+
+    <style name="TextStyle5" parent="AppTheme">
+        <item name="android:letterSpacing">0.09</item>
+    </style>
+</resources>
