@@ -7,4 +7,14 @@
     <string name="choix_alcoolo">Alcoolo</string>
     <string name="challenge">Challenge</string>
     <string name="valider">Valider</string>
+    <string name="textSignin">Sign In</string>
+    <string name="textNom">LastName</string>
+    <string name="textPrenom">FirstName</string>
+    <string name="textPsw">Password</string>
+    <string name="textPseudo">Nickname</string>
+    <string name="signinSubmit">SUBMIT</string>
+    <string name="textMail">Email</string>
+    <string name="buttonSignIn">Sign In</string>
+    <string name="submitButtonLogIn">SUBMIT</string>
+    <string name="passwordFieldLogIn">Password</string>
 </resources>

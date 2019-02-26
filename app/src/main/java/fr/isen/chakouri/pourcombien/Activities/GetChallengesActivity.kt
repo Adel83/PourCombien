@@ -12,7 +12,7 @@ import fr.isen.chakouri.pourcombien.R
 import kotlinx.android.synthetic.main.activity_get_challenges.*
 import java.util.ArrayList
 
-class GetChallenges : AppCompatActivity() {
+class GetChallengesActivity : AppCompatActivity() {
 
     // connexion firebase
     private lateinit var database: FirebaseDatabase
