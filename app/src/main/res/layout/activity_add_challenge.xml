@@ -5,8 +5,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".Activities.GetChallengesActivity">
-
+        tools:context=".Activities.AddChallengeActivity">
     <RadioGroup
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -31,14 +30,21 @@
                 android:text="@string/choix_alcoolo"
                 android:onClick="onRadioButtonClicked"/>
     </RadioGroup>
-
-    <Button
-            android:text="Button"
+    <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/buttonGetChallenges" app:layout_constraintEnd_toEndOf="parent"
+            android:inputType="textMultiLine"
+            android:ems="10"
+            android:id="@+id/challengeText" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/rButtonChoice" android:layout_marginStart="8dp"
+            app:layout_constraintStart_toStartOf="parent" android:hint="@string/challenge" android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"/>
+    <Button
+            android:text="@string/valider"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/buttonCreateChallenge" app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="8dp"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
-            android:layout_marginTop="220dp" app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintHorizontal_bias="0.527"/>
+            android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/challengeText"/>
 </android.support.constraint.ConstraintLayout>

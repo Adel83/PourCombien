@@ -13,6 +13,10 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
+        <activity android:name=".Activities.AddChallengeActivity">
+        </activity>
+        <activity android:name=".Activities.GetChallengesActivity">
+        </activity>
         <activity android:name=".Activities.LogInActivity">
         </activity>
         <activity android:name=".Activities.SignUpActivity">
@@ -25,8 +29,7 @@
         <activity android:name=".Activities.UploadImageActivity">
 
         </activity>
-        <activity android:name=".Activities.GetChallengesActivity">
-        </activity>
+
         <activity android:name=".Activities.CreateChallengeActivity">
         </activity>
         <activity android:name=".MainActivity">

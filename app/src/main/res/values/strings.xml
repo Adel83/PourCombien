@@ -2,6 +2,11 @@
     <string name="app_name">PourCombien</string>
     <string name="defi">Défi</string>
     <string name="download_picture">Télécharger photo</string>
+    <string name="choix_debile">Débile</string>
+    <string name="choix_hard">Hard</string>
+    <string name="choix_alcoolo">Alcoolo</string>
+    <string name="challenge">Challenge</string>
+    <string name="valider">Valider</string>
     <string name="textSignin">Sign In</string>
     <string name="textNom">LastName</string>
     <string name="textPrenom">FirstName</string>
