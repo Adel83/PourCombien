@@ -1,5 +1,6 @@
 package fr.isen.chakouri.pourcombien.Activities
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.SeekBar
@@ -23,5 +24,11 @@ class FirstChoiceActivity : AppCompatActivity() {
             override fun onStopTrackingTouch(seekBar: SeekBar?) {}
 
         })
+
+        //button play
+        buttonPlay3.setOnClickListener {
+            val intent = Intent(this, SecondChoiceActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
