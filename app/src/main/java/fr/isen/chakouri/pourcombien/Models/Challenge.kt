@@ -8,16 +8,14 @@ data class Challenge(
     val content: String? = null,
     val id: String? = null,
     val idCategory: Int? = null,
-    val hasBeenPlayed: Boolean = false,
-    val urlImage: String? = null
-) : Parcelable
-{
+    val urlImage: String? = null) : Parcelable {
+
     constructor(parcel: Parcel) : this(
         parcel.readValue(Int::class.java.classLoader) as? Int,
         parcel.readString(),
         parcel.readString(),
         parcel.readValue(Int::class.java.classLoader) as? Int,
-        parcel.readByte() != 0.toByte()
+        parcel.readString()
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
@@ -25,7 +23,7 @@ data class Challenge(
         parcel.writeString(content)
         parcel.writeString(id)
         parcel.writeValue(idCategory)
-        parcel.writeByte(if (hasBeenPlayed) 1 else 0)
+        parcel.writeString(urlImage)
     }
 
     override fun describeContents(): Int {
@@ -41,15 +39,13 @@ data class Challenge(
             return arrayOfNulls(size)
         }
     }
-
-    fun getChallengeText(): String{
-        return if(content != null){
+    fun getChallengeText(): String {
+        return if (content != null) {
             "Pour combien tu $content"
         } else {
             ""
         }
     }
-
 }
 
 
