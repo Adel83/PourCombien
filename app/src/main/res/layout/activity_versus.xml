@@ -9,7 +9,7 @@
         tools:context=".Activities.VersusActivity"
         android:clickable="true"
         android:focusable="true"
-        android:focusableInTouchMode="true" android:id="@+id/test">
+        android:focusableInTouchMode="true" android:id="@+id/Layout">
 
     <TextView
             android:text="Joueur 1"

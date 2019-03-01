@@ -67,7 +67,7 @@ class AddChallengeActivity : AppCompatActivity(), View.OnClickListener {
             if(fieldsValiditation())
             {
                 val url: String? = uploadFile()
-                myRef.child(myRef.push().key.toString()).setValue(Challenge(0, challengeText.text.toString(), myRef.push().key.toString(), levelChosen?.convertInt, false, url))
+                myRef.child(myRef.push().key.toString()).setValue(Challenge(0, challengeText.text.toString(), myRef.push().key.toString(), levelChosen?.convertInt, url))
             }
         }
     }
