@@ -17,5 +17,11 @@ class DefiActivity : AppCompatActivity() {
             val intent = Intent(this, VersusActivity::class.java)
             startActivity(intent)
         }
+
+        //button home
+        homebutton5.setOnClickListener {
+            val intent = Intent(this, HomeActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
