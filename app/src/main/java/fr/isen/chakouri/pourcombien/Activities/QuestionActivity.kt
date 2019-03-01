@@ -21,10 +21,6 @@ import kotlinx.android.synthetic.main.activity_question.*
 class QuestionActivity : AppCompatActivity() {
     var numberLimit = "8"
 
-
-
-
-
     private var challengesList: ArrayList<Challenge>? = null
     private var playersList: ArrayList<Player>? = null
     private var round = Round(RoundState.NEW.convertInt)
@@ -86,7 +82,6 @@ class QuestionActivity : AppCompatActivity() {
             intent.putExtra(
                 HomeActivity.ROUND,
                 round)
-            intent.putExtra("max", numberLimit)
             startActivity(intent)
         }
 
