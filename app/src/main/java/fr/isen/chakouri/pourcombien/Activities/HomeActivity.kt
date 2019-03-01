@@ -9,6 +9,7 @@ import fr.isen.chakouri.pourcombien.Models.Player
 import android.widget.LinearLayout
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : AppCompatActivity() {
@@ -36,16 +37,19 @@ class HomeActivity : AppCompatActivity() {
 
         //button play
         buttonPlay.setOnClickListener {
-            if(numberOfPlayersRight()) {
-                val playersList: ArrayList<Player> = createPlayersFromFields()
+            val playersList: ArrayList<Player> = createPlayersFromFields()
+            if(playersList.size > 1) {
                 val intent = Intent(this, ModeActivity::class.java)
-                intent.putParcelableArrayListExtra(HomeActivity.PLAYERS,
+                intent.putParcelableArrayListExtra(
+                    HomeActivity.PLAYERS,
                     playersList as java.util.ArrayList<out Parcelable>
                 )
                 startActivity(intent)
             }
+            else {
+                Toast.makeText(this, "2 joueurs requis minimum", Toast.LENGTH_SHORT).show()
+            }
         }
-
     }
 
     private fun createEditText(): EditText {
@@ -66,20 +70,12 @@ class HomeActivity : AppCompatActivity() {
 
     private fun createPlayersFromFields(): ArrayList<Player> {
         val playersList = ArrayList<Player>()
-        /*if(!name1Field.text.isNullOrBlank())
-            playersList.add(Player(1,name1Field.text.toString()))
-        if(!name2Field.text.isNullOrBlank())
-            playersList.add(Player(2, name2Field.text.toString()))*/
         for((id, field) in fieldsList.withIndex()){
             if(!field.text.isNullOrBlank())
                 playersList.add(Player(id, field.text.toString()))
         }
         return playersList
     }
-
-    private fun numberOfPlayersRight(): Boolean =
-       fieldsList.size > 1
-    // TODO : implémentation qui marche
 
     private fun initThreeFields() {
         fieldsList.add(createEditText())
