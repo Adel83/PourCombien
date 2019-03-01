@@ -19,15 +19,19 @@ class HomeActivity : AppCompatActivity() {
         const val ROUND = "round"
     }
 
-    var numberOfLines = 4
+    var numberOfLines = 1
+    var fieldsList: ArrayList<EditText> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
         setContentView(fr.isen.chakouri.pourcombien.R.layout.activity_home)
 
+        initThreeFields()
+
         addFieldButton.setOnClickListener{
-            addLine()
+            fieldsList.add(createEditText())
+            addLine(fieldsList.last())
         }
 
         //button play
@@ -48,27 +52,42 @@ class HomeActivity : AppCompatActivity() {
         val lparams = ActionBar.LayoutParams(698, 170) // Width , height
         val edittext = EditText(this)
         edittext.layoutParams = lparams
-        edittext.setHint(" Joueur  " + numberOfLines)
+        edittext.hint = " Joueur $numberOfLines"
+        numberOfLines++
         return edittext
     }
 
-    fun addLine() {
+    fun addLine(editText: EditText) {
         val p = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-        createEditText().layoutParams = p
-        createEditText().id = numberOfLines + 1
-        joueursLayout.addView(createEditText())
-        numberOfLines++
+        editText.layoutParams = p
+        editText.id = numberOfLines + 1
+        joueursLayout.addView(editText)
     }
 
     private fun createPlayersFromFields(): ArrayList<Player> {
         val playersList = ArrayList<Player>()
-        if(!name1Field.text.isNullOrBlank())
+        /*if(!name1Field.text.isNullOrBlank())
             playersList.add(Player(1,name1Field.text.toString()))
         if(!name2Field.text.isNullOrBlank())
-            playersList.add(Player(2, name2Field.text.toString()))
+            playersList.add(Player(2, name2Field.text.toString()))*/
+        for((id, field) in fieldsList.withIndex()){
+            if(!field.text.isNullOrBlank())
+                playersList.add(Player(id, field.text.toString()))
+        }
         return playersList
     }
 
     private fun numberOfPlayersRight(): Boolean =
-        !name1Field.text.isNullOrBlank() && !name2Field.text.isNullOrBlank()
+       fieldsList.size > 1
+    // TODO : implémentation qui marche
+
+    private fun initThreeFields() {
+        fieldsList.add(createEditText())
+        fieldsList.add(createEditText())
+        fieldsList.add(createEditText())
+
+        addLine(fieldsList[0])
+        addLine(fieldsList[1])
+        addLine(fieldsList[2])
+    }
 }
