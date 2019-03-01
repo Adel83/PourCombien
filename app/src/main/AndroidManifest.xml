@@ -13,6 +13,10 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
+        <activity android:name=".Activities.Shake.ServiceActivity">
+        </activity>
+        <activity android:name=".Activities.ServiceActivity">
+        </activity>
         <activity android:name=".Activities.DefiActivity">
         </activity>
         <activity android:name=".Activities.SecondChoiceActivity">
@@ -54,6 +58,7 @@
         </activity>
         <activity android:name=".MainActivity">
         </activity>
+
     </application>
 
 </manifest>
