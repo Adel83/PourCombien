@@ -13,12 +13,12 @@ class HomeActivity : AppCompatActivity() {
     var numberOfLines = 4
 
     public override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(fr.isen.chakouri.pourcombien.R.layout.activity_home)
 
         addFieldButton.setOnClickListener{
             addLine()
-
         }
     }
 
