@@ -24,7 +24,6 @@
         <activity android:name=".Activities.QuestionActivity">
         </activity>
         <activity android:name=".Activities.VersusActivity">
-
         </activity>
         <activity android:name=".Activities.NextStepActivity">
         </activity>
@@ -42,11 +41,6 @@
         <activity android:name=".Activities.AddChallengeActivity">
         </activity>
         <activity android:name=".Activities.GetChallengesActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
         <activity android:name=".Activities.LogInActivity">
         </activity>
