@@ -7,7 +7,6 @@ import android.os.Parcelable
 import fr.isen.chakouri.pourcombien.Models.Player
 import fr.isen.chakouri.pourcombien.R
 import kotlinx.android.synthetic.main.activity_home.*
-import kotlinx.android.synthetic.main.activity_versus.*
 
 class HomeActivity : AppCompatActivity() {
 
