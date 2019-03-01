@@ -18,5 +18,11 @@ class NotMatchActivity : AppCompatActivity() {
             val intent = Intent(this, FirstChoiceActivity::class.java)
             startActivity(intent)
         }
+
+        //button home
+        homebutton7.setOnClickListener {
+            val intent = Intent(this, HomeActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

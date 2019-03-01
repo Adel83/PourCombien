@@ -35,6 +35,12 @@ class ModeActivity : AppCompatActivity(), View.OnClickListener {
         sillybutton.setOnClickListener(this)
         hard_button.setOnClickListener(this)
         alcoholobutton.setOnClickListener(this)
+
+        //button home
+        homebutton.setOnClickListener {
+            val intent = Intent(this, HomeActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun onClick(v: View?) {

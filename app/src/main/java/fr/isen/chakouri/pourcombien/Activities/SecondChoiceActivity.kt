@@ -1,5 +1,6 @@
 package fr.isen.chakouri.pourcombien.Activities
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.SeekBar
@@ -13,6 +14,10 @@ class SecondChoiceActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_second_choice)
 
+        var ss:String = intent.getStringExtra("max2")
+        val maxbar2 = ss.toInt()
+        seekBar3!!.max = (maxbar2 - 1)
+
         seekBar3.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 val seekValue2 = progress + 1
@@ -24,5 +29,11 @@ class SecondChoiceActivity : AppCompatActivity() {
             override fun onStopTrackingTouch(seekBar: SeekBar?) {}
 
         })
+
+        //button home
+        homebutton4.setOnClickListener {
+            val intent = Intent(this, HomeActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
