@@ -9,7 +9,6 @@ import fr.isen.chakouri.pourcombien.Models.Player
 import fr.isen.chakouri.pourcombien.Models.Round
 import fr.isen.chakouri.pourcombien.Models.RoundState
 import fr.isen.chakouri.pourcombien.R
-import kotlinx.android.synthetic.main.activity_first_choice.*
 import kotlinx.android.synthetic.main.activity_question.*
 
 class QuestionActivity : AppCompatActivity() {
@@ -47,6 +46,12 @@ class QuestionActivity : AppCompatActivity() {
         //button play
         buttonPlay2.setOnClickListener {
             val intent = Intent(this, FirstChoiceActivity::class.java)
+            startActivity(intent)
+        }
+
+        //button home
+        homebutton2.setOnClickListener {
+            val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
         }
     }

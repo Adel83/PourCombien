@@ -16,5 +16,11 @@ class MatchActivity : AppCompatActivity() {
             val intent = Intent(this, DefiActivity::class.java)
             startActivity(intent)
         }
+
+        //button home
+        homebutton6.setOnClickListener {
+            val intent = Intent(this, HomeActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

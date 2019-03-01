@@ -30,5 +30,11 @@ class FirstChoiceActivity : AppCompatActivity() {
             val intent = Intent(this, SecondChoiceActivity::class.java)
             startActivity(intent)
         }
+
+        //button home
+        homebutton3.setOnClickListener {
+            val intent = Intent(this, HomeActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
