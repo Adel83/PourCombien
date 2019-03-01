@@ -3,6 +3,7 @@ package fr.isen.chakouri.pourcombien.Activities
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Parcelable
 import android.widget.SeekBar
 import fr.isen.chakouri.pourcombien.Models.Challenge
 import fr.isen.chakouri.pourcombien.Models.Player
@@ -46,7 +47,20 @@ class QuestionActivity : AppCompatActivity() {
 
         //button play
         buttonPlay2.setOnClickListener {
+            // enregistrement du nombre saisi
+            round.maxNumber = textNumber1.text.toString().toInt()
             val intent = Intent(this, FirstChoiceActivity::class.java)
+            intent.putParcelableArrayListExtra(
+                HomeActivity.CHALLENGES,
+                challengesList as java.util.ArrayList<out Parcelable>
+            )
+            intent.putParcelableArrayListExtra(
+                HomeActivity.PLAYERS,
+                playersList as java.util.ArrayList<out Parcelable>
+            )
+            intent.putExtra(
+                HomeActivity.ROUND,
+                round)
             startActivity(intent)
         }
     }
