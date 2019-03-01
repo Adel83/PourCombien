@@ -24,7 +24,6 @@
         <activity android:name=".Activities.QuestionActivity">
         </activity>
         <activity android:name=".Activities.VersusActivity">
-
         </activity>
         <activity android:name=".Activities.NextStepActivity">
         </activity>
