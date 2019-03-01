@@ -4,17 +4,17 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import fr.isen.chakouri.pourcombien.R
-import kotlinx.android.synthetic.main.activity_versus.*
+import kotlinx.android.synthetic.main.activity_defi.*
 
-class VersusActivity : AppCompatActivity() {
+class DefiActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_versus)
+        setContentView(R.layout.activity_defi)
 
-        //button gitan
-        test.setOnClickListener {
-            val intent = Intent(this, QuestionActivity::class.java)
+        //button play
+        buttonPlay5.setOnClickListener {
+            val intent = Intent(this, VersusActivity::class.java)
             startActivity(intent)
         }
     }

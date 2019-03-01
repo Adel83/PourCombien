@@ -49,7 +49,6 @@ dependencies {
     // Pour que Julien le fasse marcher :
     implementation 'com.squareup.picasso:picasso:2.5.0'
 
-
     // connexions
     implementation 'com.google.firebase:firebase-auth:16.1.0'
 

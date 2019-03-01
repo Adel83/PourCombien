@@ -20,6 +20,10 @@ import java.util.*
 
 class UploadImageActivity : AppCompatActivity(), View.OnClickListener {
 
+    private val REQUEST_CODE = 11
+    private var filePath: Uri? = null
+    internal var storage:FirebaseStorage?=null
+    internal var storageReference:StorageReference?=null
     private val  PICK_IMAGE_REQUEST = 1234
 
     override fun onClick(v: View) {
@@ -27,7 +31,6 @@ class UploadImageActivity : AppCompatActivity(), View.OnClickListener {
             showFileChooser()
         else if (v === buttonUpload)
             uploadFile()
-
     }
 
     private fun uploadFile() {
@@ -52,10 +55,7 @@ class UploadImageActivity : AppCompatActivity(), View.OnClickListener {
                     val progress = 100.0 * taskSnapShot.bytesTransferred/taskSnapShot.totalByteCount
                     progressDialog.setMessage("Uploaded "+progress.toInt() + "%...")
                 }
-
-
         }
-
     }
 
     private fun showFileChooser() {
@@ -63,17 +63,7 @@ class UploadImageActivity : AppCompatActivity(), View.OnClickListener {
         intent.type = "image/*"
         intent.action= Intent.ACTION_GET_CONTENT
         startActivityForResult(Intent.createChooser(intent,"SELECT PICTURE"),PICK_IMAGE_REQUEST)
-
     }
-
-    private val REQUEST_CODE = 11
-    private var filePath: Uri? = null
-
-    internal var storage:FirebaseStorage?=null
-    internal var storageReference:StorageReference?=null
-
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -102,5 +92,5 @@ class UploadImageActivity : AppCompatActivity(), View.OnClickListener {
                 e.printStackTrace()
             }
         }
-        }
     }
+}

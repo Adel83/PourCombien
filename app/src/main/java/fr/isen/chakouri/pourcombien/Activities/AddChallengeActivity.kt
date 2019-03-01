@@ -30,6 +30,7 @@ class AddChallengeActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var database: FirebaseDatabase
     private lateinit var myRef: DatabaseReference
 
+
     // pour stockage de l'image
     private var filePath: Uri? = null
     internal var storage: FirebaseStorage?=null
@@ -69,7 +70,6 @@ class AddChallengeActivity : AppCompatActivity(), View.OnClickListener {
                 myRef.child(myRef.push().key.toString()).setValue(Challenge(0, challengeText.text.toString(), myRef.push().key.toString(), levelChosen?.convertInt, false, url))
             }
         }
-
     }
 
     private fun uploadFile(): String? {
@@ -114,7 +114,6 @@ class AddChallengeActivity : AppCompatActivity(), View.OnClickListener {
     fun onRadioButtonClicked(view: View) {
         if(view is RadioButton) {
             val checked = view.isChecked
-
             when(view.id){
                 rButtonSilly.id ->
                     if(checked){

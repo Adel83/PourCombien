@@ -7,7 +7,6 @@ import android.os.Parcelable
 import android.view.View
 import android.widget.RadioButton
 import com.google.firebase.database.*
-import fr.isen.chakouri.pourcombien.Models.Category
 import fr.isen.chakouri.pourcombien.Models.Challenge
 import fr.isen.chakouri.pourcombien.Models.Level
 import fr.isen.chakouri.pourcombien.Models.Player
@@ -27,7 +26,7 @@ class GetChallengesActivity : AppCompatActivity() {
     private lateinit var database: FirebaseDatabase
     private lateinit var myRef: DatabaseReference
 
-    private var levelChoosen: Level? = null
+    private var levelChosen: Level? = null
     private var challengesList: ArrayList<Challenge> = ArrayList()
     private var playersList: ArrayList<Player> = ArrayList()
 
@@ -46,10 +45,9 @@ class GetChallengesActivity : AppCompatActivity() {
         myRef.child(Level.ALCOHOLIC.convertInt.toString()).setValue(Category("alcoolo", Level.ALCOHOLIC.convertInt))*/
 
         buttonGetChallenges.setOnClickListener {
-            if(levelChoosen != null) {
+            if(levelChosen != null) {
                 loadChallenges()
             }
-
         }
 
         buttonNextStep.setOnClickListener {
@@ -73,15 +71,13 @@ class GetChallengesActivity : AppCompatActivity() {
                     //val challengesList: ArrayList<Challenge?> = ArrayList()
                     for (ds in dataSnapshot.children) {
                         val challenge = ds.getValue(Challenge::class.java)
-                        if (challenge?.idCategory == levelChoosen?.convertInt) {
+                        if (challenge?.idCategory == levelChosen?.convertInt) {
                             challenge?.let { challengesList.add(it) }
                         }
                     }
                 }
 
             }
-
-
             override fun onCancelled(databaseError: DatabaseError) {
                 // Failed to read value
             }
@@ -97,15 +93,15 @@ class GetChallengesActivity : AppCompatActivity() {
             when(view.id){
                 rButtonSilly.id ->
                     if(checked){
-                        levelChoosen = Level.SILLY
+                        levelChosen = Level.SILLY
                     }
                 rButtonHard.id ->
                     if(checked) {
-                        levelChoosen = Level.HARD
+                        levelChosen = Level.HARD
                     }
                 rButtonAlcoholo.id ->
                     if(checked) {
-                        levelChoosen = Level.ALCOHOLIC
+                        levelChosen = Level.ALCOHOLIC
                     }
             }
         }
