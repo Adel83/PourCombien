@@ -42,6 +42,14 @@ data class Challenge(
         }
     }
 
+    fun getChallengeText(): String{
+        return if(content != null){
+            "Pour combien tu $content"
+        } else {
+            ""
+        }
+    }
+
 }
 
 
