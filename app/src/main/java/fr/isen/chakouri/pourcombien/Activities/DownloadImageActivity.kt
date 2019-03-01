@@ -3,8 +3,6 @@ package fr.isen.chakouri.pourcombien.Activities
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.ImageView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.annotation.GlideModule
 import com.google.firebase.storage.FirebaseStorage
 import com.squareup.picasso.Picasso
 import fr.isen.chakouri.pourcombien.R

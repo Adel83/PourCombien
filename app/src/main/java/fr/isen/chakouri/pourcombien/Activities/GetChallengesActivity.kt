@@ -34,7 +34,7 @@ class GetChallengesActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_get_challenges)
-
+        // TODO : réinitialiser les Parcelable
         database = FirebaseDatabase.getInstance()
         myRef = database.getReference("challenge")
 
@@ -77,7 +77,6 @@ class GetChallengesActivity : AppCompatActivity() {
                             challenge?.let { challengesList.add(it) }
                         }
                     }
-                    challengesList.reverse()
                 }
 
             }

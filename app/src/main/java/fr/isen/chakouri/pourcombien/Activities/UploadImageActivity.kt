@@ -3,7 +3,6 @@ package fr.isen.chakouri.pourcombien.Activities
 import android.app.Activity
 import android.app.ProgressDialog
 import android.content.Intent
-import android.graphics.BitmapFactory
 import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
