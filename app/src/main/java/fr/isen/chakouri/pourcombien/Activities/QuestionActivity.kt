@@ -12,6 +12,11 @@ import fr.isen.chakouri.pourcombien.R
 import kotlinx.android.synthetic.main.activity_question.*
 
 class QuestionActivity : AppCompatActivity() {
+    var numberLimit = "8"
+
+
+
+
 
     private var challengesList: ArrayList<Challenge>? = null
     private var playersList: ArrayList<Player>? = null
@@ -35,6 +40,7 @@ class QuestionActivity : AppCompatActivity() {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 val seekValue0 = progress + 1
                 textNumber1.text = "$seekValue0"
+                numberLimit = "$seekValue0"
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {}
@@ -46,6 +52,7 @@ class QuestionActivity : AppCompatActivity() {
         //button play
         buttonPlay2.setOnClickListener {
             val intent = Intent(this, FirstChoiceActivity::class.java)
+            intent.putExtra("max", numberLimit)
             startActivity(intent)
         }
 

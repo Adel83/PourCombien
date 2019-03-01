@@ -14,6 +14,10 @@ class SecondChoiceActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_second_choice)
 
+        var ss:String = intent.getStringExtra("max2")
+        val maxbar2 = ss.toInt()
+        seekBar3!!.max = (maxbar2 - 1)
+
         seekBar3.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 val seekValue2 = progress + 1
