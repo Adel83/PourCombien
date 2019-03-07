@@ -2,9 +2,11 @@ package fr.isen.chakouri.pourcombien.Activities
 
 import android.app.ActionBar
 import android.content.Intent
+import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Parcelable
+import android.view.View
 import fr.isen.chakouri.pourcombien.Models.Player
 import android.widget.LinearLayout
 import android.view.ViewGroup
@@ -53,8 +55,11 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun createEditText(): EditText {
-        val lparams = ActionBar.LayoutParams(698, 170) // Width , height
+        val lparams = ActionBar.LayoutParams(498, 170) // Width , height
         val edittext = EditText(this)
+        edittext.setTextColor(Color.WHITE)
+        edittext.setHintTextColor(Color.GRAY)
+        edittext.textAlignment = View.TEXT_ALIGNMENT_CENTER
         edittext.layoutParams = lparams
         edittext.hint = " Joueur $numberOfLines"
         numberOfLines++
