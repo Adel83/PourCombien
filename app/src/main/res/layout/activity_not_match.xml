@@ -43,7 +43,7 @@
             app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="92dp"
             android:layout_marginTop="64dp" app:layout_constraintTop_toBottomOf="@+id/imageView3"/>
     <TextView
-            android:text=",venge toi !"
+            android:text=", venge toi !"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:id="@+id/revengeField" android:textSize="25sp"
@@ -52,4 +52,16 @@
             app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="32dp"
             app:layout_constraintHorizontal_bias="0.0" android:layout_marginTop="64dp"
             app:layout_constraintTop_toBottomOf="@+id/imageView3"/>
+
+    <Button
+            android:text="Suivant"
+            android:layout_width="143dp"
+            android:layout_height="60dp"
+            android:id="@+id/buttonNext"
+            android:textColor="@color/pale_mauve" android:background="@color/colorPrimary"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginStart="8dp"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/namePlayerField" android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 </android.support.constraint.ConstraintLayout>

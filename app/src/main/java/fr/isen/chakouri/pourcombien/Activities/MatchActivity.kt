@@ -3,6 +3,7 @@ package fr.isen.chakouri.pourcombien.Activities
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Parcelable
 import fr.isen.chakouri.pourcombien.Models.Challenge
 import fr.isen.chakouri.pourcombien.Models.Player
 import fr.isen.chakouri.pourcombien.Models.Round
@@ -28,9 +29,22 @@ class MatchActivity : AppCompatActivity() {
         }
 
         namePlayerField.text = round.challenger?.username
+        // annonce de la fin du round
+        round.number = RoundState.FINISHED.convertInt
 
         next2.setOnClickListener {
             val intent = Intent(this, DefiActivity::class.java)
+            intent.putParcelableArrayListExtra(
+                HomeActivity.CHALLENGES,
+                challengesList as java.util.ArrayList<out Parcelable>
+            )
+            intent.putParcelableArrayListExtra(
+                HomeActivity.PLAYERS,
+                playersList as java.util.ArrayList<out Parcelable>
+            )
+            intent.putExtra(
+                HomeActivity.ROUND,
+                round)
             startActivity(intent)
         }
 

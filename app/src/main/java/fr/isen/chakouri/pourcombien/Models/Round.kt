@@ -69,6 +69,13 @@ data class Round(
             getOpponents(playersList) // nouveaux opposants
             newChallengesList = getChallenge(challengesList) // nouveau challenge
         }
+        else if(number == RoundState.ONGOING.convertInt){
+            // activité en cours
+            val player = challenger
+            challenger = opponent
+            opponent = player
+            --maxNumber
+        }
         ++number
         return newChallengesList
     }
