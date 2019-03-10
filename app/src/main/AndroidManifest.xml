@@ -8,49 +8,67 @@
 
     <application
             android:allowBackup="true"
-            android:icon="@mipmap/ic_launcher"
+            android:icon="@mipmap/logo_pour_combien"
             android:label="@string/app_name"
-            android:roundIcon="@mipmap/ic_launcher_round"
+            android:roundIcon="@mipmap/logo_pour_combien_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".Activities.DefiActivity">
+        <activity android:name=".Activities.DefiActivity"
+                  android:screenOrientation="portrait">
+
         </activity>
-        <activity android:name=".Activities.SecondChoiceActivity">
+        <activity android:name=".Activities.SecondChoiceActivity"
+                  android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".Activities.MatchActivity">
+        <activity android:name=".Activities.MatchActivity"
+                  android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".Activities.FirstChoiceActivity">
+        <activity android:name=".Activities.FirstChoiceActivity"
+                  android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".Activities.QuestionActivity">
+        <activity android:name=".Activities.QuestionActivity"
+                  android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".Activities.VersusActivity">
+        <activity android:name=".Activities.VersusActivity"
+                  android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".Activities.NextStepActivity">
+        <activity android:name=".Activities.NextStepActivity"
+                  android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".Activities.DownloadImageActivity">
+        <activity android:name=".Activities.DownloadImageActivity"
+                  android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".Activities.HomeActivity">
+        <activity android:name=".Activities.HomeActivity"
+                  android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.NotMatchActivity">
+        <activity android:name=".Activities.NotMatchActivity"
+                  android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".Activities.AddChallengeActivity">
+        <activity android:name=".Activities.AddChallengeActivity"
+                  android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".Activities.GetChallengesActivity">
+        <activity android:name=".Activities.GetChallengesActivity"
+                  android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".Activities.LogInActivity">
+        <activity android:name=".Activities.LogInActivity"
+                  android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".Activities.ModeActivity">
+        <activity android:name=".Activities.ModeActivity"
+                  android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".Activities.SignUpActivity">
+        <activity android:name=".Activities.SignUpActivity"
+                  android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".Activities.UploadImageActivity">
+        <activity android:name=".Activities.UploadImageActivity"
+                  android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".Activities.CreateChallengeActivity">
+        <activity android:name=".Activities.CreateChallengeActivity"
+                  android:screenOrientation="portrait">
         </activity>
 
     </application>
