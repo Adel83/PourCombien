@@ -1,15 +1,10 @@
 package fr.isen.chakouri.pourcombien.Activities
 
-import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Parcelable
 import android.widget.SeekBar
-import android.widget.Toast
-import fr.isen.chakouri.pourcombien.Models.Challenge
-import fr.isen.chakouri.pourcombien.Models.Player
-import fr.isen.chakouri.pourcombien.Models.Round
-import fr.isen.chakouri.pourcombien.Models.RoundState
+import fr.isen.chakouri.pourcombien.Managers.ActivityManager
+import fr.isen.chakouri.pourcombien.Models.*
 import fr.isen.chakouri.pourcombien.R
 import kotlinx.android.synthetic.main.activity_first_choice.*
 
@@ -17,7 +12,7 @@ class FirstChoiceActivity : AppCompatActivity() {
 
     private var challengesList: ArrayList<Challenge>? = null
     private var playersList: ArrayList<Player>? = null
-    private var round = Round(RoundState.NEW.convertInt)
+    private var round = Round()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,25 +46,15 @@ class FirstChoiceActivity : AppCompatActivity() {
         //button play
         buttonPlay3.setOnClickListener {
             round.opponentNumber = textNumber2.text.toString().toInt()
-            val intent = Intent(this, SecondChoiceActivity::class.java)
-            intent.putParcelableArrayListExtra(
-                HomeActivity.CHALLENGES,
-                challengesList as java.util.ArrayList<out Parcelable>
-            )
-            intent.putParcelableArrayListExtra(
-                HomeActivity.PLAYERS,
-                playersList as java.util.ArrayList<out Parcelable>
-            )
-            intent.putExtra(
-                HomeActivity.ROUND,
-                round)
-            startActivity(intent)
+            startActivity(
+                ActivityManager.switchActivity(this, SecondChoiceActivity::class.java,
+                challengesList!!, playersList!!, round))
         }
 
         //button home
         homebutton3.setOnClickListener {
-            val intent = Intent(this, HomeActivity::class.java)
-            startActivity(intent)
+            startActivity(ActivityManager.backHome(this))
+            finish()
         }
     }
 }

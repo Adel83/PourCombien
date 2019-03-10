@@ -1,5 +1,6 @@
-package fr.isen.chakouri.pourcombien.Models
+package fr.isen.chakouri.pourcombien.Managers
 
+import fr.isen.chakouri.pourcombien.Models.Challenge
 import kotlin.random.Random
 
 data class ChallengeManager(val challengesList: ArrayList<Challenge>? = ArrayList())

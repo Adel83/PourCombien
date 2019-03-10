@@ -1,12 +1,11 @@
 package fr.isen.chakouri.pourcombien.Activities
 
-import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Parcelable
 import android.view.View
 import android.widget.Toast
 import com.google.firebase.database.*
+import fr.isen.chakouri.pourcombien.Managers.ActivityManager
 import fr.isen.chakouri.pourcombien.Models.*
 import fr.isen.chakouri.pourcombien.R
 import kotlinx.android.synthetic.main.activity_mode.*
@@ -32,15 +31,12 @@ class ModeActivity : AppCompatActivity(), View.OnClickListener {
         // chargement des joueurs
         intent?.let { playersList = intent.getParcelableArrayListExtra(HomeActivity.PLAYERS)}
 
+        // boutons représentants les modes de jeu
         sillybutton.setOnClickListener(this)
         hard_button.setOnClickListener(this)
         alcoholobutton.setOnClickListener(this)
-
         //button home
-        homebutton.setOnClickListener {
-            val intent = Intent(this, HomeActivity::class.java)
-            startActivity(intent)
-        }
+        homebutton.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
@@ -48,6 +44,10 @@ class ModeActivity : AppCompatActivity(), View.OnClickListener {
             sillybutton -> levelChosen = Level.SILLY
             hard_button -> levelChosen = Level.HARD
             alcoholobutton -> levelChosen = Level.ALCOHOLIC
+            homebutton -> {
+                startActivity(ActivityManager.backHome(this))
+                finish()
+            }
         }
 
         if(levelChosen != null) {
@@ -69,8 +69,8 @@ class ModeActivity : AppCompatActivity(), View.OnClickListener {
                     }
                 }
                 if(challengesList.size != 0) {
-                    val round = Round(RoundState.FINISHED.convertInt)
-                    val intent = Intent(applicationContext, VersusActivity::class.java)
+                    val round = Round(RoundState.ONNEW.convertInt)
+                    /*val intent = Intent(applicationContext, VersusActivity::class.java)
                     intent.putParcelableArrayListExtra(
                         HomeActivity.CHALLENGES,
                         challengesList as java.util.ArrayList<out Parcelable>
@@ -82,7 +82,8 @@ class ModeActivity : AppCompatActivity(), View.OnClickListener {
                     intent.putExtra(
                         HomeActivity.ROUND,
                         round)
-                    startActivity(intent)
+                    startActivity(intent)*/
+                    startActivity(ActivityManager.switchActivity(applicationContext, VersusActivity::class.java, challengesList, playersList, round))
                 }
                 else {
                     Toast.makeText(applicationContext, "Aucun challenge trouvé", Toast.LENGTH_SHORT).show()

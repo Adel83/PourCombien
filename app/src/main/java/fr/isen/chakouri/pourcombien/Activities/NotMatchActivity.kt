@@ -1,21 +1,20 @@
 package fr.isen.chakouri.pourcombien.Activities
 
-import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Parcelable
-import fr.isen.chakouri.pourcombien.Models.Challenge
-import fr.isen.chakouri.pourcombien.Models.Player
-import fr.isen.chakouri.pourcombien.Models.Round
-import fr.isen.chakouri.pourcombien.Models.RoundState
+import android.view.View
+import fr.isen.chakouri.pourcombien.Managers.ActivityManager
+import fr.isen.chakouri.pourcombien.Managers.SoundManager
+import fr.isen.chakouri.pourcombien.Models.*
 import fr.isen.chakouri.pourcombien.R
 import kotlinx.android.synthetic.main.activity_not_match.*
 
-class NotMatchActivity : AppCompatActivity() {
+class NotMatchActivity : AppCompatActivity(), View.OnClickListener {
 
     private var challengesList: ArrayList<Challenge>? = null
     private var playersList: ArrayList<Player>? = null
-    private var round = Round(RoundState.NEW.convertInt)
+    private var round = Round()
+    private var soundManager = SoundManager(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,40 +28,58 @@ class NotMatchActivity : AppCompatActivity() {
             round = intent.getParcelableExtra(HomeActivity.ROUND)
         }
 
+        // changement d'état du round
+        round.number++
+
         // gestion du bouton suivant
         buttonNextManager()
 
         namePlayerField.text = round.challenger?.username
+        // soundtrack lié à un game over
+        soundManager.playSound(SoundManager.GAMEOVER)
 
-        next.setOnClickListener {
-            // changement des infos liées à la variable ROUND
-            round.nextRound(ArrayList(), ArrayList())
-            val intent = Intent(this, FirstChoiceActivity::class.java)
-            intent.putParcelableArrayListExtra(
-                HomeActivity.CHALLENGES,
-                challengesList as java.util.ArrayList<out Parcelable>
-            )
-            intent.putParcelableArrayListExtra(
-                HomeActivity.PLAYERS,
-                playersList as java.util.ArrayList<out Parcelable>
-            )
-            intent.putExtra(
-                HomeActivity.ROUND,
-                round)
-            startActivity(intent)
-        }
-
+        next.setOnClickListener(this)
         //button home
-        homebutton7.setOnClickListener {
-            val intent = Intent(this, HomeActivity::class.java)
-            startActivity(intent)
-        }
+        homebutton7.setOnClickListener(this)
 
         // TODO : à voir si on garde le bouton "Suivant"
     }
 
+    override fun onClick(v: View?) {
+        when(v){
+            next -> {
+                // changement des infos liées à la variable ROUND
+                val nextActivity = if(round.number == RoundState.ONGOING.convertInt) {
+                    round.nextRound(ArrayList(), ArrayList())
+                    FirstChoiceActivity::class.java
+                } else{
+                    // failure
+                    if(areThereAnyChallenges())
+                        VersusActivity::class.java
+                    else
+                        HomeActivity::class.java
+                }
+                startActivity(
+                    ActivityManager.switchActivity(this, nextActivity,
+                    challengesList!!, playersList!!, round))
+            }
+            homebutton7 ->
+            {
+                startActivity(ActivityManager.backHome(this))
+                finish()
+            }
+        }
+    }
+
     fun buttonNextManager(){
-        buttonNext.text = if(areThereAnyChallenges()) "Suivant" else "Fin de partie"
+        buttonNext.text = if(round.number == RoundState.ONGOING.convertInt)
+            "Vengeance"
+        else {
+            if(areThereAnyChallenges())
+                "Prochain défi"
+            else
+                "Fin de partie"
+        }
     }
 
     fun areThereAnyChallenges() = challengesList?.size!! > 0
