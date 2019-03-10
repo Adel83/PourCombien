@@ -1,14 +1,10 @@
 package fr.isen.chakouri.pourcombien.Activities
 
-import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Parcelable
 import android.widget.SeekBar
-import fr.isen.chakouri.pourcombien.Models.Challenge
-import fr.isen.chakouri.pourcombien.Models.Player
-import fr.isen.chakouri.pourcombien.Models.Round
-import fr.isen.chakouri.pourcombien.Models.RoundState
+import fr.isen.chakouri.pourcombien.Managers.ActivityManager
+import fr.isen.chakouri.pourcombien.Models.*
 import fr.isen.chakouri.pourcombien.R
 import kotlinx.android.synthetic.main.activity_second_choice.*
 
@@ -16,7 +12,7 @@ class SecondChoiceActivity : AppCompatActivity() {
 
     private var challengesList: ArrayList<Challenge>? = null
     private var playersList: ArrayList<Player>? = null
-    private var round = Round(RoundState.NEW.convertInt)
+    private var round = Round()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,26 +46,15 @@ class SecondChoiceActivity : AppCompatActivity() {
 
         //button home
         homebutton4.setOnClickListener {
-            val intent = Intent(this, HomeActivity::class.java)
-            startActivity(intent)
+            startActivity(ActivityManager.backHome(this))
+            finish()
         }
 
         buttonPlay4.setOnClickListener {
             round.challengerNumber = textNumber3.text.toString().toInt()
-            val nextActivity = determineNextActivity()
-            val intent = Intent(this, nextActivity)
-            intent.putParcelableArrayListExtra(
-                HomeActivity.CHALLENGES,
-                challengesList as java.util.ArrayList<out Parcelable>
-            )
-            intent.putParcelableArrayListExtra(
-                HomeActivity.PLAYERS,
-                playersList as java.util.ArrayList<out Parcelable>
-            )
-            intent.putExtra(
-                HomeActivity.ROUND,
-                round)
-            startActivity(intent)
+            startActivity(
+                ActivityManager.switchActivity(this, determineNextActivity(),
+                challengesList!!, playersList!!, round))
         }
     }
 

@@ -1,20 +1,19 @@
 package fr.isen.chakouri.pourcombien.Activities
 
 import android.app.ActionBar
-import android.content.Intent
 import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Parcelable
 import android.view.View
 import fr.isen.chakouri.pourcombien.Models.Player
 import android.widget.LinearLayout
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
+import fr.isen.chakouri.pourcombien.Managers.ActivityManager
 import kotlinx.android.synthetic.main.activity_home.*
 
-class HomeActivity : AppCompatActivity() {
+class HomeActivity : AppCompatActivity(), View.OnClickListener {
 
     companion object {
         const val CHALLENGES = "challenges"
@@ -29,27 +28,36 @@ class HomeActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         setContentView(fr.isen.chakouri.pourcombien.R.layout.activity_home)
-
         initThreeFields()
 
-        addFieldButton.setOnClickListener{
-            fieldsList.add(createEditText())
-            addLine(fieldsList.last())
-        }
-
+        // ajout de joueurs
+        addFieldButton.setOnClickListener(this)
         //button play
-        buttonPlay.setOnClickListener {
-            val playersList: ArrayList<Player> = createPlayersFromFields()
-            if(playersList.size > 1) {
-                val intent = Intent(this, ModeActivity::class.java)
-                intent.putParcelableArrayListExtra(
-                    HomeActivity.PLAYERS,
-                    playersList as java.util.ArrayList<out Parcelable>
-                )
-                startActivity(intent)
+        buttonPlay.setOnClickListener(this)
+    }
+
+    override fun onClick(v: View?) {
+        when(v){
+            addFieldButton ->
+            {
+                // TODO : ajouter la suppresion d'un EditText
+                fieldsList.add(createEditText())
+                addLine(fieldsList.last())
             }
-            else {
-                Toast.makeText(this, "2 joueurs requis minimum", Toast.LENGTH_SHORT).show()
+            buttonPlay ->
+            {
+                val playersList: ArrayList<Player> = createPlayersFromFields()
+                if(playersList.size > 1) {
+                    /*val intent = Intent(this, ModeActivity::class.java)
+                    intent.putParcelableArrayListExtra(
+                        HomeActivity.PLAYERS,
+                        playersList as java.util.ArrayList<out Parcelable>
+                    )*/
+                    startActivity(ActivityManager.switchActivity(this, ModeActivity::class.java, ArrayList(), playersList, null))
+                }
+                else {
+                    Toast.makeText(this, "2 joueurs requis minimum", Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }
@@ -83,12 +91,9 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun initThreeFields() {
-        fieldsList.add(createEditText())
-        fieldsList.add(createEditText())
-        fieldsList.add(createEditText())
-
-        addLine(fieldsList[0])
-        addLine(fieldsList[1])
-        addLine(fieldsList[2])
+        for(i in 0..2){
+            fieldsList.add(createEditText())
+            addLine(fieldsList[i])
+        }
     }
 }

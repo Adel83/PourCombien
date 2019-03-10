@@ -52,8 +52,6 @@
         </activity>
         <activity android:name=".Activities.CreateChallengeActivity">
         </activity>
-        <activity android:name=".MainActivity">
-        </activity>
 
     </application>
 

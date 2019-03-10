@@ -2,6 +2,7 @@ package fr.isen.chakouri.pourcombien.Models
 
 import android.os.Parcel
 import android.os.Parcelable
+import fr.isen.chakouri.pourcombien.Managers.ChallengeManager
 import kotlin.random.Random
 
 data class Round(
@@ -21,8 +22,7 @@ data class Round(
         parcel.readInt(),
         parcel.readInt(),
         parcel.readParcelable(Challenge::class.java.classLoader)
-    ) {
-    }
+    )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeInt(number)
@@ -49,21 +49,19 @@ data class Round(
     }
 
     private fun getOpponents(playersList: ArrayList<Player>) {
-        if(number == 0 && playersList.size > 1){
-            val randomGenerator = Random(System.currentTimeMillis())
-            val indexChosen = randomGenerator.nextInt(playersList.size)
-            challenger = playersList[indexChosen]
-            var newIndex = randomGenerator.nextInt(playersList.size)
-            while(newIndex == indexChosen){
-                newIndex = randomGenerator.nextInt(playersList.size)
-            }
-            opponent = playersList[newIndex]
+        val randomGenerator = Random(System.currentTimeMillis())
+        val indexChosen = randomGenerator.nextInt(playersList.size)
+        challenger = playersList[indexChosen]
+        var newIndex = randomGenerator.nextInt(playersList.size)
+        while(newIndex == indexChosen){
+            newIndex = randomGenerator.nextInt(playersList.size)
         }
+        opponent = playersList[newIndex]
     }
 
     fun nextRound(playersList: ArrayList<Player>, challengesList: ArrayList<Challenge>): ArrayList<Challenge>?{
         var newChallengesList: ArrayList<Challenge>? = null
-        if(number >= RoundState.FINISHED.convertInt || number == RoundState.NEW.convertInt){
+        if(number == RoundState.ONNEW.convertInt || number == RoundState.ONSUCCESS.convertInt || number == RoundState.ONFAILURE.convertInt){
             // duel terminé ou nouvelle partie
             initNumber()
             getOpponents(playersList) // nouveaux opposants
@@ -76,18 +74,17 @@ data class Round(
             opponent = player
             --maxNumber
         }
-        ++number
         return newChallengesList
     }
 
     private fun initNumber() {
-        number = RoundState.NEW.convertInt
+        number = RoundState.ONNEW.convertInt
         challengerNumber = 0
         opponentNumber = 0
         maxNumber = 15
     }
 
-    private fun getChallenge(challengesList: ArrayList<Challenge>): ArrayList<Challenge>?{
+    fun getChallenge(challengesList: ArrayList<Challenge>): ArrayList<Challenge>?{
         val challengeManager = ChallengeManager(challengesList)
         challenge = challengeManager.getRandomChallenge()
         return challengeManager.challengesList

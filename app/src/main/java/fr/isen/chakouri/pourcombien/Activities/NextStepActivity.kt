@@ -2,11 +2,10 @@ package fr.isen.chakouri.pourcombien.Activities
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ImageView
 import android.widget.Toast
 import com.squareup.picasso.Picasso
 import fr.isen.chakouri.pourcombien.Models.Challenge
-import fr.isen.chakouri.pourcombien.Models.ChallengeManager
+import fr.isen.chakouri.pourcombien.Managers.ChallengeManager
 import fr.isen.chakouri.pourcombien.Models.Player
 import fr.isen.chakouri.pourcombien.Models.Round
 import fr.isen.chakouri.pourcombien.R
