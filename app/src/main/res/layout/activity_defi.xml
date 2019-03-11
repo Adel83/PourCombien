@@ -15,11 +15,12 @@
             tools:context=".Activities.DefiActivity">
 
         <ImageView
-                android:layout_width="114dp"
-                android:layout_height="78dp" app:srcCompat="@drawable/logo"
+                android:layout_width="80dp"
+                android:layout_height="56dp" app:srcCompat="@drawable/logo"
                 android:id="@+id/imageView6" app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:contentDescription="@string/pour_combien_logo"/>
+                android:contentDescription="@string/pour_combien_logo" android:layout_marginTop="10dp"
+                android:layout_marginStart="8dp"/>
         <Button
                 android:text="@string/next_step"
                 android:layout_width="143dp"

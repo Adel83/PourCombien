@@ -11,6 +11,13 @@
         android:focusable="true"
         android:focusableInTouchMode="true" android:id="@+id/Layout">
 
+    <ImageView
+            android:layout_width="80dp"
+            android:layout_height="56dp" app:srcCompat="@drawable/logo"
+            android:id="@+id/imageView13" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/pour_combien_logo" android:layout_marginTop="10dp"
+            android:layout_marginStart="8dp"/>
     <TextView
             android:text="@string/default_player1_name"
             android:layout_width="wrap_content"
