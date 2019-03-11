@@ -17,4 +17,47 @@
     <string name="buttonSignIn">Sign In</string>
     <string name="submitButtonLogIn">SUBMIT</string>
     <string name="passwordFieldLogIn">Password</string>
+
+    <!-- Strings about the rules of the game -->
+    <string name="rule_title">Règles du jeu</string>
+    <string name="rule_1">1. Entre le nom de chaque joueur</string>
+    <string name="rule_2">2. Choisis ton mode de jeu</string>
+    <string name="rule_3">3. Un des joueurs est défié aléatoirement par un autre joueur</string>
+    <string name="rule_4">4. Le joueur défié choisit la valeur max que les 2 joueurs pourront jouer</string>
+    <string name="rule_5">5. Les 2 joueurs choisissent tour à tour un nombre entre 1 et la valeur max</string>
+    <string name="rule_6">6. S\'ils ont la même, le joueur défié doit relever son défi</string>
+    <string name="rule_7">7. Sinon, le jeu s\'inverse, le défiant devient défié et la valeur max se réduit d\'un cran</string>
+
+    <!-- Strings about contentDescription -->
+    <string name="home_button">Bouton pour retourner à la page d\'accueil</string>
+    <string name="pour_combien_logo">Logo du jeu "Pour Combien ?"</string>
+    <string name="like_image">Pouce représentant un "J\'aime"</string>
+    <string name="reload_image">Flèche signifiant le rafraichissement d\'une question</string>
+    <string name="no_match_image">Image humoristique signifiant qu\'il n\'y a pas eu match</string>
+    <string name="match_image">Image humoristique signifiant qu\'il y a eu match</string>
+    <string name="challenge_image">Image représentant le challenge devant avoir lieu</string>
+    <string name="rules_image">Liste représentant les règles du jeu</string>
+    <string name="versus_image">Image symbolisant le duel</string>
+
+    <!-- Default strings -->
+    <string name="default_number_like">26</string>
+    <string name="default_player1_name">Joueur 1</string>
+    <string name="default_player2_name">Joueur 2</string>
+    <string name="default_choice_number">8</string>
+    <string name="default_challenge_question">casses une pomme avec ta tete ?</string>
+    <string name="default_challenge_order">casses une pomme avec ta tete</string>
+
+    <!-- Useful strings -->
+    <string name="next_step">Suivant</string>
+    <string name="refresh_hint">(secoue ton tel pour changer de defi)</string>
+    <string name="pour_combien_tu">Pour combien tu…</string>
+    <string name="instructions_number_choice">Choisis un nombre :</string>
+    <string name="instructions_challenge">Releve le defi</string>
+    <string name="no_match_declaration">Pas Match !</string>
+    <string name="match_declaration">Match !</string>
+    <string name="text_play">Jouer</string>
+    <string name="text_mode">Mode</string>
+    <string name="text_silly">Debile</string>
+    <string name="text_hard">Hard</string>
+    <string name="text_alcoholic">Alcolo</string>
 </resources>
