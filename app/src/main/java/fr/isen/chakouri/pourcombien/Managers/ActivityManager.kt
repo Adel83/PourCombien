@@ -8,7 +8,7 @@ import fr.isen.chakouri.pourcombien.Models.Challenge
 import fr.isen.chakouri.pourcombien.Models.Player
 import fr.isen.chakouri.pourcombien.Models.Round
 
-class ActivityManager(){
+class ActivityManager{
 
     companion object {
 
@@ -38,7 +38,10 @@ class ActivityManager(){
             }
         }
 
-        fun makeParcelableIntent(intent: Intent, challengesList: ArrayList<Challenge>, playersList: ArrayList<Player>, round: Round?): Intent{
+        fun switchActivityWithClearFlag(context: Context, activityClass: Class<*>, challengesList: ArrayList<Challenge>, playersList: ArrayList<Player>, round: Round?): Intent
+            = makeParcelableIntent(clearFlagActivity((Intent(context, activityClass))), challengesList, playersList, round)
+
+        private fun makeParcelableIntent(intent: Intent, challengesList: ArrayList<Challenge>, playersList: ArrayList<Player>, round: Round?): Intent{
             intent.putParcelableArrayListExtra(
                 HomeActivity.CHALLENGES,
                 challengesList as java.util.ArrayList<out Parcelable>

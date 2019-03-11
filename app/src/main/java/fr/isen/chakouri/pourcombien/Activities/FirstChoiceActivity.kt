@@ -3,6 +3,7 @@ package fr.isen.chakouri.pourcombien.Activities
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.SeekBar
+import android.widget.Toast
 import fr.isen.chakouri.pourcombien.Managers.ActivityManager
 import fr.isen.chakouri.pourcombien.Models.*
 import fr.isen.chakouri.pourcombien.R
@@ -56,5 +57,10 @@ class FirstChoiceActivity : AppCompatActivity() {
             startActivity(ActivityManager.backHome(this))
             finish()
         }
+    }
+
+    override fun onBackPressed() {
+        // retour interdit
+        Toast.makeText(this, "Trop tard pour faire marche arrière... Assume, et joue !", Toast.LENGTH_LONG).show()
     }
 }

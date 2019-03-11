@@ -7,9 +7,12 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.SeekBar
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import fr.isen.chakouri.pourcombien.Activities.Shake.OnShakeListener
 import fr.isen.chakouri.pourcombien.Activities.Shake.ShakeDetector
 import fr.isen.chakouri.pourcombien.Managers.ActivityManager
+import fr.isen.chakouri.pourcombien.Managers.SoundManager
 import fr.isen.chakouri.pourcombien.Models.*
 import fr.isen.chakouri.pourcombien.R
 import kotlinx.android.synthetic.main.activity_question.*
@@ -23,6 +26,9 @@ class QuestionActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var mSensorManager: SensorManager
     private var mAccelerometer: Sensor? = null
     private var mShakeDetector: ShakeDetector? = null
+    private var myRef: DatabaseReference? = null
+    private var challengeLiked: Boolean = false // booléan permettant de liker une seule fois l'activité par game
+    private var soundManager = SoundManager(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,8 +41,13 @@ class QuestionActivity : AppCompatActivity(), View.OnClickListener {
             round = intent.getParcelableExtra(HomeActivity.ROUND)
         }
 
+        if(round.challenge != null){
+            myRef = FirebaseDatabase.getInstance().getReference("challenge/${round.challenge!!.id}/like")
+        }
+
         challengerId.text = round.challenger?.username
         questionText.text = round.challenge?.content
+        likesField.text = round.challenge?.like.toString()
 
         seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
@@ -67,6 +78,8 @@ class QuestionActivity : AppCompatActivity(), View.OnClickListener {
         buttonPlay2.setOnClickListener(this)
         //button home
         homebutton2.setOnClickListener(this)
+        // button like
+        imageLike.setOnClickListener(this)
     }
 
     override fun onClick(v: View){
@@ -77,6 +90,18 @@ class QuestionActivity : AppCompatActivity(), View.OnClickListener {
             {
                 startActivity(ActivityManager.backHome(this))
                 finish()
+            }
+            imageLike ->
+            {
+                if(myRef != null) {
+                    if(!challengeLiked) {
+                        round.challenge?.updateNumberOfLikes(1, myRef, this)
+                    }
+                    else{
+                        round.challenge?.updateNumberOfLikes(-1, myRef, this)
+                    }
+                    challengeLiked = !challengeLiked
+                }
             }
         }
     }
@@ -107,5 +132,20 @@ class QuestionActivity : AppCompatActivity(), View.OnClickListener {
         // Add the following line to unregister the Sensor Manager onPause
         mSensorManager.unregisterListener(mShakeDetector)
         super.onPause()
+    }
+
+    fun onLikeAction(state: Int){
+        when(state){
+            DatabaseState.UPDATE_LIKE_SUCCESS ->
+            {
+                likesField.text = (likesField.text.toString().toInt() + 1).toString()
+                soundManager.playSound(SoundManager.LIKE)
+            }
+            DatabaseState.UPDATE_UNLIKE_SUCCESS ->
+            {
+                likesField.text = (likesField.text.toString().toInt() - 1).toString()
+                soundManager.playSound(SoundManager.UNLIKE)
+            }
+        }
     }
 }
