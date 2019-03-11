@@ -84,10 +84,6 @@
                 android:name=".Activities.UploadImageActivity"
                 android:screenOrientation="portrait">
         </activity>
-        <activity
-                android:name=".Activities.CreateChallengeActivity"
-                android:screenOrientation="portrait">
-        </activity>
     </application>
 
 </manifest>

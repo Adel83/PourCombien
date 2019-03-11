@@ -11,14 +11,16 @@
             android:layout_width="114dp"
             android:layout_height="78dp" app:srcCompat="@drawable/logo"
             android:id="@+id/imageView9" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/pour_combien_logo"/>
     <ImageView
             android:layout_width="48dp"
             android:layout_height="46dp" app:srcCompat="@drawable/home2"
             android:id="@+id/homebutton" app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="16dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="16dp"/>
+            android:layout_marginTop="16dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="16dp"
+            android:contentDescription="@string/home_button"/>
     <TextView
-            android:text="Mode"
+            android:text="@string/text_mode"
             android:layout_width="200dp"
             android:layout_height="59dp"
             android:id="@+id/tittle" android:fontFamily="@font/intro_inline"
@@ -27,7 +29,7 @@
             app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="125dp"
             app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="125dp"/>
     <Button
-            android:text="DEBILE"
+            android:text="@string/text_silly"
             android:layout_width="250dp"
             android:layout_height="70dp"
             android:id="@+id/sillybutton" android:background="@color/pale_mauve"
@@ -38,7 +40,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tittle" android:textSize="50sp"
             android:textColor="@color/violet_blue"/>
     <Button
-            android:text="hard"
+            android:text="@string/text_hard"
             android:layout_width="250dp"
             android:layout_height="70dp"
             android:id="@+id/hard_button" android:background="@color/pale_mauve"
@@ -49,7 +51,7 @@
             app:layout_constraintTop_toBottomOf="@+id/sillybutton" android:textSize="50sp"
             android:textColor="@color/violet_blue"/>
     <Button
-            android:text="Alcolo"
+            android:text="@string/text_alcoholic"
             android:layout_width="250dp"
             android:layout_height="70dp"
             android:id="@+id/alcoholobutton" android:background="@color/pale_mauve"

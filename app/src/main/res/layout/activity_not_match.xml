@@ -13,15 +13,17 @@
             android:layout_width="114dp"
             android:layout_height="78dp" app:srcCompat="@drawable/logo"
             android:id="@+id/imageView10" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/pour_combien_logo"/>
     <ImageView
             android:layout_width="48dp"
             android:layout_height="46dp" app:srcCompat="@drawable/home2"
             android:id="@+id/homebutton7"
             android:layout_marginTop="16dp" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" android:layout_marginEnd="16dp"/>
+            app:layout_constraintTop_toTopOf="parent" android:layout_marginEnd="16dp"
+            android:contentDescription="@string/home_button"/>
     <TextView
-            android:text="Pas Match ! "
+            android:text="@string/no_match_declaration"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textView" android:textSize="50sp"
@@ -38,9 +40,10 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintHorizontal_bias="0.476"
             android:layout_marginStart="24dp" android:layout_marginEnd="24dp" android:layout_marginTop="72dp"
-            app:layout_constraintTop_toBottomOf="@+id/textView"/>
+            app:layout_constraintTop_toBottomOf="@+id/textView"
+            android:contentDescription="@string/no_match_image"/>
     <TextView
-            android:text="Joueur 2"
+            android:text="@string/default_player2_name"
             android:layout_width="wrap_content"
             android:layout_height="29dp"
             android:id="@+id/namePlayerField" android:textSize="25sp"
@@ -59,7 +62,7 @@
             app:layout_constraintTop_toBottomOf="@+id/imageView3"/>
 
     <Button
-            android:text="Suivant"
+            android:text="@string/next_step"
             android:layout_width="143dp"
             android:layout_height="60dp"
             android:id="@+id/buttonNext"
