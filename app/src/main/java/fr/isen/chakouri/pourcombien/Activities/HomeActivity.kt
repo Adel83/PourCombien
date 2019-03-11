@@ -1,6 +1,7 @@
 package fr.isen.chakouri.pourcombien.Activities
 
 import android.app.ActionBar
+import android.content.Intent
 import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -34,6 +35,12 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
         addFieldButton.setOnClickListener(this)
         //button play
         buttonPlay.setOnClickListener(this)
+
+        //Rules
+        rulesButton.setOnClickListener {
+            val intent = Intent(this, RulesActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun onClick(v: View?) {

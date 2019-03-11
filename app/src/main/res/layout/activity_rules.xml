@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background"
+        tools:context=".Activities.RulesActivity">
+
+    <TextView
+            android:text="7. Sinon, le jeu s'inverse, le défiant devient défié et la valeur max se réduit d'un cran"
+            android:layout_width="371dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/text7"
+            android:textColor="@color/colorPrimaryDark" android:textSize="20sp" android:layout_marginTop="24dp"
+            app:layout_constraintTop_toBottomOf="@+id/text6"
+            android:textAlignment="center" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+    />
+    <TextView
+            android:text="6. S'ils ont la même, le joueur défié doit relever son défi"
+            android:layout_width="349dp"
+            android:layout_height="54dp"
+            android:id="@+id/text6"
+            android:textColor="@color/pale_mauve" android:textSize="20sp" android:layout_marginTop="24dp"
+            app:layout_constraintTop_toBottomOf="@+id/text5" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.448"
+            android:textAlignment="center"/>
+    <TextView
+            android:text="5. Les 2 joueurs choisissent tour à tour un nombre entre 1 et la valeur max"
+            android:layout_width="369dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/text5"
+            android:textColor="@color/colorPrimaryDark" android:textSize="20sp" android:textAlignment="center"
+            android:layout_marginTop="24dp" app:layout_constraintTop_toBottomOf="@+id/text4"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+    />
+    <TextView
+            android:text="4. Le joueur défié choisit la valeur max que les 2 joueurs pourront jouer"
+            android:layout_width="368dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/text4"
+            android:textColor="@color/pale_mauve" android:textSize="20sp" android:textAlignment="center"
+            android:layout_marginTop="24dp" app:layout_constraintTop_toBottomOf="@+id/text3"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+    />
+    <TextView
+            android:text="3. Un des jeueurs est défié aléatoirement par un autre joueur"
+            android:layout_width="357dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/text3"
+            android:textColor="@color/colorPrimaryDark" android:textSize="20sp" android:textAlignment="center"
+            android:layout_marginTop="24dp" app:layout_constraintTop_toBottomOf="@+id/text2"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"/>
+    <TextView
+            android:text="2. Choisis ton mode de jeu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/text2"
+            android:textColor="@color/pale_mauve" android:textSize="20sp" android:layout_marginTop="24dp"
+            app:layout_constraintTop_toBottomOf="@+id/text1" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+    <TextView
+            android:text=" Règles du jeu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/title" android:textSize="40sp"
+            android:textColor="@color/pale_mauve" android:fontFamily="@font/intro_inline"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="16dp"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="16dp"
+            android:textAlignment="center"
+            android:layout_marginTop="80dp" app:layout_constraintTop_toTopOf="parent" android:textAllCaps="false"
+            app:layout_constraintHorizontal_bias="0.496"/>
+    <ImageView
+            android:layout_width="48dp"
+            android:layout_height="46dp" app:srcCompat="@drawable/home2"
+            android:id="@+id/homebutton10"
+            android:layout_marginTop="16dp" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" android:layout_marginEnd="16dp"/>
+    <TextView
+            android:text="1. Entre le nom de chaque joueur"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/text1"
+            android:textColor="@color/colorPrimaryDark" android:textSize="20sp" android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/title" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+    />
+</android.support.constraint.ConstraintLayout>
