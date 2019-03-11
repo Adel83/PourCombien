@@ -10,11 +10,12 @@
 
 
     <ImageView
-            android:layout_width="114dp"
-            android:layout_height="78dp" app:srcCompat="@drawable/logo"
-            android:id="@+id/imageView10" app:layout_constraintStart_toStartOf="parent"
+            android:layout_width="80dp"
+            android:layout_height="56dp" app:srcCompat="@drawable/logo"
+            android:id="@+id/imageView9" app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:contentDescription="@string/pour_combien_logo"/>
+            android:contentDescription="@string/pour_combien_logo" android:layout_marginTop="10dp"
+            android:layout_marginStart="8dp"/>
     <ImageView
             android:layout_width="48dp"
             android:layout_height="46dp" app:srcCompat="@drawable/home2"
