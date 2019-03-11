@@ -8,6 +8,11 @@
         android:background="@drawable/background"
         tools:context=".Activities.SecondChoiceActivity">
 
+    <ImageView
+            android:layout_width="114dp"
+            android:layout_height="78dp" app:srcCompat="@drawable/logo"
+            android:id="@+id/imageView12" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
