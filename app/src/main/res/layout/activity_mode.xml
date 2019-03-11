@@ -8,6 +8,11 @@
         android:layout_height="match_parent"
         tools:context=".Activities.ModeActivity">
     <ImageView
+            android:layout_width="114dp"
+            android:layout_height="78dp" app:srcCompat="@drawable/logo"
+            android:id="@+id/imageView9" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+    <ImageView
             android:layout_width="48dp"
             android:layout_height="46dp" app:srcCompat="@drawable/home2"
             android:id="@+id/homebutton" app:layout_constraintTop_toTopOf="parent"

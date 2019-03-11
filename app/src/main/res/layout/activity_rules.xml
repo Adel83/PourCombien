@@ -87,4 +87,9 @@
             app:layout_constraintTop_toBottomOf="@+id/title" app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
     />
+    <ImageView
+            android:layout_width="114dp"
+            android:layout_height="78dp" app:srcCompat="@drawable/logo"
+            android:id="@+id/imageView5" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 </android.support.constraint.ConstraintLayout>

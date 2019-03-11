@@ -8,6 +8,11 @@
         android:background="@drawable/background"
         tools:context=".Activities.FirstChoiceActivity">
 
+    <ImageView
+            android:layout_width="114dp"
+            android:layout_height="78dp" app:srcCompat="@drawable/logo"
+            android:id="@+id/imageView7" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
     <Button
             android:text="Suivant"
             android:layout_width="143dp"
