@@ -2,6 +2,8 @@ package fr.isen.chakouri.pourcombien.Activities
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.view.View
 import com.squareup.picasso.Picasso
 import fr.isen.chakouri.pourcombien.Managers.ActivityManager
 import fr.isen.chakouri.pourcombien.Models.*
@@ -48,6 +50,10 @@ class DefiActivity : AppCompatActivity() {
             startActivity(ActivityManager.backHome(this))
             finish()
         }
+
+        Handler().postDelayed({
+            loadingPanel.visibility = View.GONE
+        }, 1500)
     }
 
 
