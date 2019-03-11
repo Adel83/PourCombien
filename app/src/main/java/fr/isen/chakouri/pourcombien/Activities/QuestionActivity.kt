@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.SeekBar
+import android.widget.Toast
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import fr.isen.chakouri.pourcombien.Activities.Shake.OnShakeListener
@@ -100,10 +101,15 @@ class QuestionActivity : AppCompatActivity(), View.OnClickListener {
                     else{
                         round.challenge?.updateNumberOfLikes(-1, myRef, this)
                     }
-                    challengeLiked = !challengeLiked
+                    imageLike.isEnabled = false // désactivation du click en attendant le callback
                 }
             }
         }
+    }
+
+    override fun onBackPressed() {
+        // retour interdit
+        Toast.makeText(this, "Le duel est : ${round.challenger?.username} VS ${round.opponent?.username}", Toast.LENGTH_LONG).show()
     }
 
     private fun beginChallenge() {
@@ -119,6 +125,11 @@ class QuestionActivity : AppCompatActivity(), View.OnClickListener {
             challengesList = round.getChallenge(challengesList!!)
             // mise à jour du défi
             questionText.text = round.challenge?.content
+            // mise à jour du nombre likes
+            likesField.text = round.challenge?.like.toString()
+            // remise à false du booléan du vote
+            challengeLiked = false
+            imageLike.setImageResource(R.drawable.like)
         }
     }
 
@@ -140,12 +151,18 @@ class QuestionActivity : AppCompatActivity(), View.OnClickListener {
             {
                 likesField.text = (likesField.text.toString().toInt() + 1).toString()
                 soundManager.playSound(SoundManager.LIKE)
+                imageLike.setImageResource(R.drawable.likefull)
+                challengeLiked = true
             }
             DatabaseState.UPDATE_UNLIKE_SUCCESS ->
             {
                 likesField.text = (likesField.text.toString().toInt() - 1).toString()
                 soundManager.playSound(SoundManager.UNLIKE)
+                imageLike.setImageResource(R.drawable.like)
+                challengeLiked = false
             }
         }
+        // réactivation du click
+        imageLike.isEnabled = true
     }
 }

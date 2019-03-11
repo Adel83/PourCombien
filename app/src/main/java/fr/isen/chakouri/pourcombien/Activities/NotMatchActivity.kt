@@ -3,6 +3,7 @@ package fr.isen.chakouri.pourcombien.Activities
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import fr.isen.chakouri.pourcombien.Managers.ActivityManager
 import fr.isen.chakouri.pourcombien.Managers.SoundManager
 import fr.isen.chakouri.pourcombien.Models.*
@@ -69,6 +70,11 @@ class NotMatchActivity : AppCompatActivity(), View.OnClickListener {
                 finish()
             }
         }
+    }
+
+    override fun onBackPressed() {
+        // retour interdit
+        Toast.makeText(this, "Trop tard... Les jeux sont faits !", Toast.LENGTH_SHORT).show()
     }
 
     fun buttonNextManager(){

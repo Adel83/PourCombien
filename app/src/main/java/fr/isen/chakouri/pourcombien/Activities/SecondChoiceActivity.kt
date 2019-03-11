@@ -3,6 +3,7 @@ package fr.isen.chakouri.pourcombien.Activities
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.SeekBar
+import android.widget.Toast
 import fr.isen.chakouri.pourcombien.Managers.ActivityManager
 import fr.isen.chakouri.pourcombien.Models.*
 import fr.isen.chakouri.pourcombien.R
@@ -29,7 +30,7 @@ class SecondChoiceActivity : AppCompatActivity() {
         seekBar3!!.max = (maxbar - 1)
 
         playerTargeted.text = round.challenger?.username
-        textNumber3.text = (round.maxNumber/2).toString()
+        textNumber3.text = (round.maxNumber/2+1).toString()
         seekBar3.progress = round.maxNumber/2
 
         seekBar3.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
@@ -56,6 +57,11 @@ class SecondChoiceActivity : AppCompatActivity() {
                 ActivityManager.switchActivity(this, determineNextActivity(),
                 challengesList!!, playersList!!, round))
         }
+    }
+
+    override fun onBackPressed() {
+        // retour interdit
+        Toast.makeText(this, "Petit tricheur...", Toast.LENGTH_SHORT).show()
     }
 
     private fun determineNextActivity(): Class<*> {

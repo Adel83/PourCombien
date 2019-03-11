@@ -30,7 +30,7 @@ class FirstChoiceActivity : AppCompatActivity() {
         seekBar2!!.max = (maxbar - 1)
 
         playerTargeted.text = round.opponent?.username
-        textNumber2.text = (round.maxNumber/2).toString()
+        textNumber2.text = (round.maxNumber/2+1).toString()
         seekBar2.progress = round.maxNumber/2
 
         seekBar2.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
