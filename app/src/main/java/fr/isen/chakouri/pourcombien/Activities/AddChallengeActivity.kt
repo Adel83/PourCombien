@@ -19,6 +19,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import fr.isen.chakouri.pourcombien.Managers.ActivityManager
 import fr.isen.chakouri.pourcombien.Models.Challenge
 import fr.isen.chakouri.pourcombien.Models.Level
 import fr.isen.chakouri.pourcombien.R
@@ -47,6 +48,11 @@ class AddChallengeActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_challenge)
 
+        //button home
+        homebutton12.setOnClickListener {
+            startActivity(ActivityManager.backHome(this))
+            finish()
+        }
 
         val buttonRequest = findViewById<View>(R.id.pictureChosen)
         buttonRequest.setOnClickListener {
@@ -91,6 +97,8 @@ class AddChallengeActivity : AppCompatActivity(), View.OnClickListener {
                 val url: String? = uploadFile()
                 val idRef = myRef.push().key.toString()
                 myRef.child(idRef).setValue(Challenge(0, challengeText.text.toString(), idRef, levelChosen?.convertInt, url))
+                startActivity(ActivityManager.backHome(this))
+                finish()
             }
         }
     }
