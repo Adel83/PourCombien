@@ -9,6 +9,7 @@ import fr.isen.chakouri.pourcombien.Managers.ActivityManager
 import fr.isen.chakouri.pourcombien.Models.*
 import fr.isen.chakouri.pourcombien.R
 import kotlinx.android.synthetic.main.activity_defi.*
+import java.lang.Exception
 
 class DefiActivity : AppCompatActivity() {
 
@@ -34,12 +35,14 @@ class DefiActivity : AppCompatActivity() {
 
         //button play
         buttonNext.setOnClickListener {
-            if(buttonNext.text.toString() == "Prochain défi"){
+            if (buttonNext.text.toString() == "Prochain défi") {
                 startActivity(
-                    ActivityManager.switchActivity(this, VersusActivity::class.java,
-                    challengesList!!, playersList!!, round))
-            }
-            else {
+                    ActivityManager.switchActivity(
+                        this, VersusActivity::class.java,
+                        challengesList!!, playersList!!, round
+                    )
+                )
+            } else {
                 startActivity(ActivityManager.backHome(this))
                 finish()
             }
@@ -51,24 +54,35 @@ class DefiActivity : AppCompatActivity() {
             finish()
         }
 
+        /*
+        // DEPRECATED :
         Handler().postDelayed({
             loadingPanel.visibility = View.GONE
         }, 1500)
+        */
     }
 
 
-    fun buttonNextManager(){
-        buttonNext.text = if(areThereAnyChallenges()) "Prochain défi" else "Fin de partie"
+    fun buttonNextManager() {
+        buttonNext.text = if (areThereAnyChallenges()) "Prochain défi" else "Fin de partie"
     }
 
     fun areThereAnyChallenges() = challengesList?.size!! > 0
 
-    fun loadImage(url: String?){
-        if(url!=null){
+    fun loadImage(url: String?) {
+        if(url != null) {
             Picasso
                 .get()
                 .load(url)
-                .into(imageChallenge)
+                .into(imageChallenge,
+                object : com.squareup.picasso.Callback {
+                    override fun onSuccess() {
+                        loadingPanel.visibility = View.GONE
+                    }
+
+                    override fun onError(e: Exception?) {
+                    }
+                })
         }
     }
 }

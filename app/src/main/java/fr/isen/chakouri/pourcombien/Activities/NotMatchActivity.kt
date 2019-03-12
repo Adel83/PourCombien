@@ -40,6 +40,7 @@ class NotMatchActivity : AppCompatActivity(), View.OnClickListener {
         soundManager.playSound(SoundManager.GAMEOVER)
 
         next.setOnClickListener(this)
+        buttonNext.setOnClickListener(this)
         //button home
         homebutton7.setOnClickListener(this)
 
@@ -48,7 +49,7 @@ class NotMatchActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         when(v){
-            next -> {
+            buttonNext, next -> {
                 // changement des infos liées à la variable ROUND
                 val nextActivity = if(round.number == RoundState.ONGOING.convertInt) {
                     round.nextRound(ArrayList(), ArrayList())
