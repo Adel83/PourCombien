@@ -9,6 +9,7 @@ import android.view.View
 import fr.isen.chakouri.pourcombien.Models.Player
 import android.widget.LinearLayout
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import fr.isen.chakouri.pourcombien.Managers.ActivityManager
@@ -24,17 +25,23 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
 
     var numberOfLines = 1
     var fieldsList: ArrayList<EditText> = ArrayList()
+    var deleteList: java.util.ArrayList<Button> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
         setContentView(fr.isen.chakouri.pourcombien.R.layout.activity_home)
-        initThreeFields()
+        initTwoFields()
 
         // ajout de joueurs
         addFieldButton.setOnClickListener(this)
         //button play
         buttonPlay.setOnClickListener(this)
+
+        //supression
+
+
+
 
         //Rules
         rulesButton.setOnClickListener {
@@ -49,7 +56,20 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
             {
                 // TODO : ajouter la suppresion d'un EditText
                 fieldsList.add(createEditText())
-                addLine(fieldsList.last())
+                deleteList.add(createButton())
+                addLine(fieldsList.last(),deleteList.last())
+            }
+            in deleteList -> {
+                //Toast.makeText(this, "supprime", Toast.LENGTH_SHORT).show()
+                val index = deleteList.indexOf(v!!)
+                fieldsList[index+2].visibility = View.GONE
+                v?.visibility = View.GONE
+                fieldsList.remove(fieldsList[index+2])
+
+                deleteList[index].visibility = View.GONE
+                v?.visibility = View.GONE
+                deleteList.remove(deleteList[index])
+                --numberOfLines
             }
             buttonPlay ->
             {
@@ -81,11 +101,25 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
         return edittext
     }
 
-    fun addLine(editText: EditText) {
+    private fun createButton() : Button {
+        val buttonParam = ActionBar.LayoutParams(16, 16) // Width , height
+        val button = Button(this)
+        button.setText("Delete")
+        return button
+    }
+
+    fun addLine(editText: EditText, button: Button?) {
         val p = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
         editText.layoutParams = p
         editText.id = numberOfLines + 1
         joueursLayout.addView(editText)
+
+        if (button != null){
+        button.setOnClickListener(this)
+        button.layoutParams = p
+        button.id = numberOfLines + 1
+        joueursLayout.addView(button)
+        }
     }
 
     private fun createPlayersFromFields(): ArrayList<Player> {
@@ -97,10 +131,10 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
         return playersList
     }
 
-    private fun initThreeFields() {
-        for(i in 0..2){
+    private fun initTwoFields() {
+        for(i in 0..1){
             fieldsList.add(createEditText())
-            addLine(fieldsList[i])
+            addLine(fieldsList[i],null)
         }
     }
 }
