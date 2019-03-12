@@ -26,7 +26,8 @@
     <string name="rule_4">4. Le joueur défié choisit la valeur max que les 2 joueurs pourront jouer</string>
     <string name="rule_5">5. Les 2 joueurs choisissent tour à tour un nombre entre 1 et la valeur max</string>
     <string name="rule_6">6. S\'ils ont la même, le joueur défié doit relever son défi</string>
-    <string name="rule_7">7. Sinon, le jeu s\'inverse, le défiant devient défié et la valeur max se réduit d\'un cran</string>
+    <string name="rule_7">7. Sinon, le jeu s\'inverse, le défiant devient défié et la valeur max se réduit d\'un cran
+    </string>
 
     <!-- Strings about contentDescription -->
     <string name="home_button">Bouton pour retourner à la page d\'accueil</string>
