@@ -33,6 +33,12 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(fr.isen.chakouri.pourcombien.R.layout.activity_home)
         initTwoFields()
 
+        //button lifecycle
+        addchallenge.setOnClickListener {
+            val intent = Intent(this, AddChallengeActivity::class.java)
+            startActivity(intent)
+        }
+
         // ajout de joueurs
         addFieldButton.setOnClickListener(this)
         //button play
