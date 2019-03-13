@@ -35,7 +35,7 @@ class NotMatchActivity : AppCompatActivity(), View.OnClickListener {
         // gestion du bouton suivant
         buttonNextManager()
 
-        namePlayerField.text = round.challenger?.username
+        notMatchOrder.text = StringBuilder().append(round.challenger?.username).append(", venge-toi !")
         // soundtrack lié à un game over
         soundManager.playSound(SoundManager.GAMEOVER)
 

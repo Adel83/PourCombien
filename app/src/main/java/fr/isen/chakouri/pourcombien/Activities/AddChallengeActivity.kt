@@ -79,12 +79,6 @@ class AddChallengeActivity : AppCompatActivity(), View.OnClickListener {
         database = FirebaseDatabase.getInstance()
         myRef = database.getReference("challenge")
 
-        buttonCreateChallenge.setOnClickListener {
-            if(fieldsValiditation())
-            {
-                myRef.child(myRef.push().key.toString()).setValue(Challenge(0, challengeText.text.toString(), myRef.push().key.toString(), levelChosen?.convertInt))
-            }
-        }
         buttonCreateChallenge.setOnClickListener(this)
     }
 
@@ -96,9 +90,7 @@ class AddChallengeActivity : AppCompatActivity(), View.OnClickListener {
             {
                 val url: String? = uploadFile()
                 val idRef = myRef.push().key.toString()
-                myRef.child(idRef).setValue(Challenge(0, challengeText.text.toString(), idRef, levelChosen?.convertInt, url))
-                startActivity(ActivityManager.backHome(this))
-                finish()
+                myRef.child(idRef).setValue(Challenge(0, challengeQuestion.text.toString(), challengeOrder.text.toString(), idRef, levelChosen?.convertInt, url))
             }
         }
     }
@@ -115,6 +107,8 @@ class AddChallengeActivity : AppCompatActivity(), View.OnClickListener {
                 .addOnSuccessListener {
                     progressDialog.dismiss()
                     Toast.makeText(applicationContext,"File Uploaded", Toast.LENGTH_SHORT).show()
+                    startActivity(ActivityManager.backHome(this))
+                    finish()
                 }
                 .addOnFailureListener{
                     progressDialog.dismiss()
@@ -140,7 +134,7 @@ class AddChallengeActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun fieldsValiditation() =
-        levelChosen != null && challengeText.text.isNotEmpty() && challengeText.text.isNotBlank()
+        levelChosen != null && challengeQuestion.text.isNotEmpty() && challengeQuestion.text.isNotBlank()
 
     fun onRadioButtonClicked(view: View) {
         if(view is RadioButton) {
@@ -188,13 +182,13 @@ class AddChallengeActivity : AppCompatActivity(), View.OnClickListener {
             AlertDialog.Builder(this)
                 .setTitle("Permission needed")
                 .setMessage("This permission is needed because of the safety of our user's personal data")
-                .setPositiveButton("ok") { dialog, which ->
+                .setPositiveButton("ok") { _, _ ->
                     ActivityCompat.requestPermissions(
                         this,
                         arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE), STORAGE_PERMISSION_CODE
                     )
                 }
-                .setNegativeButton("cancel") { dialog, which -> dialog.dismiss() }
+                .setNegativeButton("cancel") { dialog, _ -> dialog.dismiss() }
                 .create().show()
 
         } else {
@@ -207,7 +201,7 @@ class AddChallengeActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
         if (requestCode == STORAGE_PERMISSION_CODE) {
-            if (grantResults.size > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 Toast.makeText(this, "Permission GRANTED", Toast.LENGTH_SHORT).show()
             } else {
                 Toast.makeText(this, "Permission DENIED", Toast.LENGTH_SHORT).show()

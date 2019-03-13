@@ -28,7 +28,7 @@ class MatchActivity : AppCompatActivity(), View.OnClickListener {
             round = intent.getParcelableExtra(HomeActivity.ROUND)
         }
 
-        namePlayerField.text = round.challenger?.username
+        matchOrder.text = StringBuilder().append(round.challenger?.username).append(",\nassume et releve le defi")
         // changement d'état du round
         round.number = RoundState.ONSUCCESS.convertInt
         // soundtrack de match

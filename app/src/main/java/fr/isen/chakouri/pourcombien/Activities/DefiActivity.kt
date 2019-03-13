@@ -27,7 +27,8 @@ class DefiActivity : AppCompatActivity() {
             round = intent.getParcelableExtra(HomeActivity.ROUND)
         }
 
-        challengeText.text = round.challenge?.content
+        challengeText.text = round.challenge?.order
+        challengerId.text = round.challenger?.username
         loadImage("https://firebasestorage.googleapis.com/v0/b/pour-combien-tu.appspot.com/o/images%2F" + round.challenge?.urlImage + "?alt=media")
         // gestion du bouton suivant
         buttonNextManager()

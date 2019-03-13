@@ -32,7 +32,7 @@ class NextStepActivity : AppCompatActivity() {
         if(challengeSelected != null)
         {
             // affichage du texte
-            challengeText.text = challengeSelected.getChallengeText()
+            challengeText.text = challengeSelected.question
             // affichage de l'image
             loadWithPicassoByUrl(challengeSelected.urlImage)
 

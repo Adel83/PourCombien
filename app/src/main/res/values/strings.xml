@@ -47,6 +47,8 @@
     <string name="default_choice_number">8</string>
     <string name="default_challenge_question">casses une pomme avec ta tete ?</string>
     <string name="default_challenge_order">casses une pomme avec ta tete</string>
+    <string name="default_match_order">Joueur 1, assume et releve le defi</string>
+    <string name="default_not_match_order">Joueur 2, venge-toi !</string>
 
     <!-- Useful strings -->
     <string name="next_step">Suivant</string>
