@@ -4,7 +4,7 @@ import android.content.Context
 import android.media.MediaPlayer
 import fr.isen.chakouri.pourcombien.R
 
-class SoundManager(val context: Context, var mediaPlayer: MediaPlayer? = null){
+class SoundManager(val context: Context, var mediaPlayersList: ArrayList<MediaPlayer> = ArrayList()){
     companion object {
         const val GAMEOVER = R.raw.game_over
         const val MATCH = R.raw.match
@@ -13,21 +13,28 @@ class SoundManager(val context: Context, var mediaPlayer: MediaPlayer? = null){
     }
 
     fun playSound(soundId: Int){
-        mediaPlayer = MediaPlayer.create(context, soundId)
+        val mediaPlayer = MediaPlayer.create(context, soundId)
         if(mediaPlayer != null){
-            // si l'initialisation s'est bien passée
-            mediaPlayer?.start()
-            mediaPlayer?.setOnCompletionListener {
+            // création du MediaPlayer avec succès
+            mediaPlayersList.add(mediaPlayer)
+            mediaPlayer.start()
+            mediaPlayer.setOnCompletionListener {
                 // fin du son
-                stopSoundStrack()
+                releaseSound(mediaPlayer)
             }
         }
+
     }
 
-    fun stopSoundStrack(){
-        if(mediaPlayer != null){
-            mediaPlayer?.release()
-            mediaPlayer = null
-        }
+    private fun releaseSound(mediaPlayer: MediaPlayer){
+        // suppression de la liste
+        mediaPlayersList.remove(mediaPlayer)
+        mediaPlayer.release()
+    }
+
+    fun releaseAllSounds(){
+        for(mediaPlayer in mediaPlayersList)
+            mediaPlayer.release()
+        mediaPlayersList.clear()
     }
 }

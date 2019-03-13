@@ -44,4 +44,10 @@ class TTCManager(val context: Context, var textToSpeech: TextToSpeech? = null, p
             }
         }
     }
+
+    fun stopSpeech(){
+        if(textToSpeech != null){
+            textToSpeech?.stop()
+        }
+    }
 }

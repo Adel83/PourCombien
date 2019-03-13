@@ -142,6 +142,7 @@ class QuestionActivity : AppCompatActivity(), View.OnClickListener {
     public override fun onPause() {
         // Add the following line to unregister the Sensor Manager onPause
         mSensorManager.unregisterListener(mShakeDetector)
+        soundManager.releaseAllSounds()
         super.onPause()
     }
 
@@ -164,5 +165,10 @@ class QuestionActivity : AppCompatActivity(), View.OnClickListener {
         }
         // réactivation du click
         imageLike.isEnabled = true
+    }
+
+    override fun onStop(){
+        soundManager.releaseAllSounds()
+        super.onStop()
     }
 }

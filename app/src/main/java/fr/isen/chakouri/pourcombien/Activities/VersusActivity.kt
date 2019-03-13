@@ -3,7 +3,6 @@ package fr.isen.chakouri.pourcombien.Activities
 import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.speech.tts.TextToSpeech
 import android.support.annotation.RequiresApi
 import android.widget.Toast
 import fr.isen.chakouri.pourcombien.Managers.ActivityManager
@@ -18,7 +17,7 @@ class VersusActivity : AppCompatActivity() {
     private var challengesList: ArrayList<Challenge>? = null
     private var playersList: ArrayList<Player>? = null
     private var round = Round(RoundState.ONNEW.convertInt) // initialisation de base à ONNEW
-    private lateinit var textToSpeech: TextToSpeech
+    private lateinit var ttcManager: TTCManager
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,7 +39,7 @@ class VersusActivity : AppCompatActivity() {
                 player1Field.text = round.challenger?.username
                 player2Field.text = round.opponent?.username
 
-                val ttcManager = TTCManager(this)
+                ttcManager = TTCManager(this)
                 ttcManager.initTTC(TTCManager.PROVOCATION, round)
             }
         }
@@ -53,5 +52,10 @@ class VersusActivity : AppCompatActivity() {
                 ActivityManager.switchActivity(this, QuestionActivity::class.java,
                 challengesList!!, playersList!!, round))
         }
+    }
+
+    override fun onStop(){
+        ttcManager.stopSpeech()
+        super.onStop()
     }
 }
