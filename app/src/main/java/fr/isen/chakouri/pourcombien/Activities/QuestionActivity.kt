@@ -47,7 +47,7 @@ class QuestionActivity : AppCompatActivity(), View.OnClickListener {
         }
 
         challengerId.text = round.challenger?.username
-        questionText.text = round.challenge?.content
+        questionText.text = StringBuilder().append(round.challenge?.question).append(" ?").toString()
         likesField.text = round.challenge?.like.toString()
 
         seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
@@ -124,11 +124,12 @@ class QuestionActivity : AppCompatActivity(), View.OnClickListener {
         if (challengesList != null && challengesList!!.size > 0) {
             challengesList = round.getChallenge(challengesList!!)
             // mise à jour du défi
-            questionText.text = round.challenge?.content
+            questionText.text = StringBuilder().append(round.challenge?.question).append(" ?")
             // mise à jour du nombre likes
             likesField.text = round.challenge?.like.toString()
             // remise à false du booléan du vote
             challengeLiked = false
+            myRef = FirebaseDatabase.getInstance().getReference("challenge/${round.challenge!!.id}/like")
             imageLike.setImageResource(R.drawable.like)
         }
     }
