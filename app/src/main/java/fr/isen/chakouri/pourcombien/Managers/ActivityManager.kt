@@ -3,6 +3,7 @@ package fr.isen.chakouri.pourcombien.Managers
 import android.content.Context
 import android.content.Intent
 import android.os.Parcelable
+import fr.isen.chakouri.pourcombien.Activities.EndGameActivity
 import fr.isen.chakouri.pourcombien.Activities.HomeActivity
 import fr.isen.chakouri.pourcombien.Models.Challenge
 import fr.isen.chakouri.pourcombien.Models.Player
@@ -17,6 +18,14 @@ class ActivityManager{
                 Intent(
                     context,
                     HomeActivity::class.java
+                )
+            )
+
+        fun goEnd(context: Context): Intent =
+            clearFlagActivity(
+                Intent(
+                    context,
+                    EndGameActivity::class.java
                 )
             )
 

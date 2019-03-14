@@ -30,20 +30,17 @@ class DefiActivity : AppCompatActivity() {
         challengeText.text = round.challenge?.order
         challengerId.text = round.challenger?.username
         loadImage("https://firebasestorage.googleapis.com/v0/b/pour-combien-tu.appspot.com/o/images%2F" + round.challenge?.urlImage + "?alt=media")
-        // gestion du bouton suivant
-        buttonNextManager()
 
         //button play
-        buttonNext.setOnClickListener {
-            if (buttonNext.text.toString() == "Prochain défi") {
-                startActivity(
-                    ActivityManager.switchActivity(
+        nextScreen.setOnClickListener {
+            if (areThereAnyChallenges()) {
+                startActivity(ActivityManager.switchActivity(
                         this, VersusActivity::class.java,
                         challengesList!!, playersList!!, round
                     )
                 )
             } else {
-                startActivity(ActivityManager.backHome(this))
+                startActivity(ActivityManager.goEnd(this))
                 finish()
             }
         }
@@ -60,11 +57,6 @@ class DefiActivity : AppCompatActivity() {
             loadingPanel.visibility = View.GONE
         }, 1500)
         */
-    }
-
-
-    fun buttonNextManager() {
-        buttonNext.text = if (areThereAnyChallenges()) "Prochain défi" else "Fin de partie"
     }
 
     fun areThereAnyChallenges() = challengesList?.size!! > 0
