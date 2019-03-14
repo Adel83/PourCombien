@@ -60,7 +60,7 @@
                 app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="16dp"
                 android:contentDescription="@string/rules_image"/>
         <Button
-                android:text="Ajouter un defi"
+                android:text="@string/add_challenge"
                 android:layout_width="143dp"
                 android:layout_height="60dp"
                 android:id="@+id/addchallenge" android:layout_marginTop="32dp"
