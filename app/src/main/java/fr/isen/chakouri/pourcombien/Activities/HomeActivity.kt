@@ -1,18 +1,16 @@
 package fr.isen.chakouri.pourcombien.Activities
 
-import android.app.ActionBar
 import android.content.Intent
 import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Gravity
 import android.view.View
 import fr.isen.chakouri.pourcombien.Models.Player
-import android.widget.LinearLayout
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Toast
+import android.widget.*
 import fr.isen.chakouri.pourcombien.Managers.ActivityManager
+import fr.isen.chakouri.pourcombien.R
 import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : AppCompatActivity(), View.OnClickListener {
@@ -25,7 +23,8 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
 
     var numberOfLines = 1
     var fieldsList: ArrayList<EditText> = ArrayList()
-    var deleteList: java.util.ArrayList<Button> = ArrayList()
+    var deleteList: java.util.ArrayList<ImageView> = ArrayList()
+    var layoutsList: ArrayList<LinearLayout> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -34,20 +33,12 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
         initTwoFields()
 
         //button lifecycle
-        addchallenge.setOnClickListener {
-            val intent = Intent(this, AddChallengeActivity::class.java)
-            startActivity(intent)
-        }
+        addchallenge.setOnClickListener(this)
 
         // ajout de joueurs
         addFieldButton.setOnClickListener(this)
         //button play
         buttonPlay.setOnClickListener(this)
-
-        //supression
-
-
-
 
         //Rules
         rulesButton.setOnClickListener {
@@ -62,19 +53,22 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
             {
                 // TODO : ajouter la suppresion d'un EditText
                 fieldsList.add(createEditText())
-                deleteList.add(createButton())
-                addLine(fieldsList.last(),deleteList.last())
+                deleteList.add(createDeleteImage())
+                layoutsList.add(createLinearLayout())
+                addLine(fieldsList.last(), layoutsList.last(), deleteList.last())
             }
             in deleteList -> {
                 //Toast.makeText(this, "supprime", Toast.LENGTH_SHORT).show()
                 val index = deleteList.indexOf(v!!)
+                // disparation du layout
                 fieldsList[index+2].visibility = View.GONE
-                v?.visibility = View.GONE
+                layoutsList[index+2].visibility = View.GONE
+                v.visibility = View.GONE
+                // effacement du tableau
                 fieldsList.remove(fieldsList[index+2])
-
-                deleteList[index].visibility = View.GONE
-                v?.visibility = View.GONE
+                layoutsList.remove(layoutsList[index+2])
                 deleteList.remove(deleteList[index])
+                updateHintNames()
                 --numberOfLines
             }
             buttonPlay ->
@@ -92,40 +86,57 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
                     Toast.makeText(this, "2 joueurs requis minimum", Toast.LENGTH_SHORT).show()
                 }
             }
+            addchallenge ->
+            {
+                val intent = Intent(this, AddChallengeActivity::class.java)
+                startActivity(intent)
+            }
         }
     }
 
     private fun createEditText(): EditText {
-        val lparams = ActionBar.LayoutParams(498, 170) // Width , height
-        val edittext = EditText(this)
-        edittext.setTextColor(Color.WHITE)
-        edittext.setHintTextColor(Color.GRAY)
-        edittext.textAlignment = View.TEXT_ALIGNMENT_CENTER
-        edittext.layoutParams = lparams
-        edittext.hint = " Joueur $numberOfLines"
+        val editText = EditText(this)
+        editText.setTextColor(Color.WHITE)
+        editText.setHintTextColor(Color.GRAY)
+        editText.textAlignment = View.TEXT_ALIGNMENT_CENTER
+        editText.hint = " Joueur $numberOfLines"
         numberOfLines++
-        return edittext
+        return editText
     }
 
-    private fun createButton() : Button {
-        val buttonParam = ActionBar.LayoutParams(16, 16) // Width , height
-        val button = Button(this)
-        button.setText("Delete")
-        return button
+    private fun createDeleteImage() : ImageView {
+        val image = ImageView(this)
+        image.setImageResource(R.drawable.ic_delete)
+        return image
     }
 
-    fun addLine(editText: EditText, button: Button?) {
-        val p = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+    private fun addLine(editText: EditText, linearLayout: LinearLayout, image: ImageView?) {
+        // insertion du LinearLayout
+        joueursLayout.addView(linearLayout)
+
+        var p = LinearLayout.LayoutParams(1, ViewGroup.LayoutParams.WRAP_CONTENT, 3f)
         editText.layoutParams = p
         editText.id = numberOfLines + 1
-        joueursLayout.addView(editText)
+        linearLayout.addView(editText)
 
-        if (button != null){
-        button.setOnClickListener(this)
-        button.layoutParams = p
-        button.id = numberOfLines + 1
-        joueursLayout.addView(button)
+        if(image != null) {
+            p = LinearLayout.LayoutParams(1, 50, 1f)
+            image.layoutParams = p
+            image.id = numberOfLines + 1
+            linearLayout.addView(image)
+            image.setOnClickListener(this)
         }
+    }
+
+    private fun createLinearLayout(): LinearLayout {
+        val linearLayout = LinearLayout(this)
+        linearLayout.orientation = LinearLayout.HORIZONTAL
+        linearLayout.layoutParams =
+                LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        linearLayout.id = numberOfLines + 1
+        linearLayout.weightSum = 4f
+        linearLayout.gravity = Gravity.CENTER_VERTICAL
+        return linearLayout
     }
 
     private fun createPlayersFromFields(): ArrayList<Player> {
@@ -137,10 +148,19 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
         return playersList
     }
 
+    private fun updateHintNames(){
+        for((index, editText) in fieldsList.withIndex()){
+            if(editText.text.isNullOrBlank()){
+                editText.hint = "Joueur ${index+1}"
+            }
+        }
+    }
+
     private fun initTwoFields() {
         for(i in 0..1){
             fieldsList.add(createEditText())
-            addLine(fieldsList[i],null)
+            layoutsList.add(createLinearLayout())
+            addLine(fieldsList[i], layoutsList[i],null)
         }
     }
 }
