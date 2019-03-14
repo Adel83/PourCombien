@@ -14,6 +14,8 @@
             android:roundIcon="@mipmap/logo_pour_combien_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
+        <activity android:name=".Activities.EndGameActivity">
+        </activity>
         <activity
                 android:name=".Activities.RulesActivity"
                 android:screenOrientation="portrait">
