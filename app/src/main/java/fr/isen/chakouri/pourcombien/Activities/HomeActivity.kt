@@ -114,7 +114,7 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
         // insertion du LinearLayout
         joueursLayout.addView(linearLayout)
 
-        var p = LinearLayout.LayoutParams(1, ViewGroup.LayoutParams.WRAP_CONTENT, 3f)
+        var p = LinearLayout.LayoutParams(1, ViewGroup.LayoutParams.WRAP_CONTENT, if(image == null) 4f else 3f)
         editText.layoutParams = p
         editText.id = numberOfLines + 1
         linearLayout.addView(editText)
