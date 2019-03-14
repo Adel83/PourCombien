@@ -59,7 +59,7 @@
             android:layout_width="143dp"
             android:layout_height="60dp"
             android:id="@+id/buttonNext"
-            android:textColor="@color/pale_mauve" android:background="@color/colorPrimary"
+            android:textColor="@color/pale_mauve" android:background="@drawable/circle_button2"
             android:layout_marginEnd="8dp"
             app:layout_constraintEnd_toEndOf="parent" android:layout_marginStart="8dp"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginTop="8dp"

@@ -48,7 +48,7 @@
                 android:id="@+id/buttonPlay"
                 app:layout_constraintStart_toStartOf="parent" app:layout_constraintBottom_toBottomOf="parent"
                 android:layout_marginBottom="45dp" android:layout_marginStart="50dp"
-                android:textColor="@color/pale_mauve" android:background="@color/colorPrimary"
+                android:textColor="@color/pale_mauve" android:background="@drawable/circle_button2"
                 android:layout_marginTop="32dp" app:layout_constraintTop_toBottomOf="@+id/addFieldButton"
                 app:layout_constraintVertical_bias="0.0" app:layout_constraintEnd_toStartOf="@+id/addchallenge"
                 android:layout_marginEnd="24dp"/>
@@ -65,7 +65,7 @@
                 android:layout_height="60dp"
                 android:id="@+id/addchallenge" android:layout_marginTop="32dp"
                 app:layout_constraintTop_toBottomOf="@+id/addFieldButton" app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="50dp" android:background="@color/colorPrimary"
+                android:layout_marginEnd="50dp" android:background="@drawable/circle_button2"
                 android:textColor="@color/pale_mauve" app:layout_constraintStart_toEndOf="@+id/buttonPlay"
                 android:layout_marginStart="24dp" android:layout_marginBottom="45dp"
                 app:layout_constraintBottom_toBottomOf="parent"/>
