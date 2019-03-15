@@ -14,7 +14,7 @@
             tools:context=".Activities.AddChallengeActivity">
         <TextView
                 android:layout_width="350dp"
-                android:layout_height="39dp"
+                android:layout_height="53dp"
                 android:id="@+id/challengeText3" android:textSize="40sp"
                 android:textColor="@color/pale_mauve" android:fontFamily="@font/fresh_marker"
                 app:layout_constraintStart_toStartOf="parent"

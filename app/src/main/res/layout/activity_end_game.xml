@@ -45,7 +45,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/imageView15" app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
         <TextView
-                android:text="Nous n'avons plus de defis en stock... Pour le moment !"
+                android:text="Nous n'avons plus de défis en stock... Pour le moment !"
                 android:layout_width="313dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView8" android:textSize="24sp"

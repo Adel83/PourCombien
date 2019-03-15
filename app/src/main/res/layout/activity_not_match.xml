@@ -46,7 +46,7 @@
     <TextView
             android:text="@string/default_player2_name"
             android:layout_width="wrap_content"
-            android:layout_height="25dp"
+            android:layout_height="39dp"
             android:id="@+id/notMatchOrder" android:textSize="25sp"
             android:fontFamily="@font/fresh_marker" android:textColor="@color/pale_mauve"
             android:layout_marginEnd="8dp"
