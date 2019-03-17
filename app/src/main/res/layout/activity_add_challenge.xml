@@ -14,7 +14,7 @@
             tools:context=".Activities.AddChallengeActivity">
         <TextView
                 android:layout_width="350dp"
-                android:layout_height="39dp"
+                android:layout_height="53dp"
                 android:id="@+id/challengeText3" android:textSize="40sp"
                 android:textColor="@color/pale_mauve" android:fontFamily="@font/fresh_marker"
                 app:layout_constraintStart_toStartOf="parent"
@@ -71,20 +71,21 @@
                     android:layout_height="wrap_content" android:id="@+id/rButtonSilly" android:layout_weight="1"
                     android:onClick="onRadioButtonClicked"
                     android:buttonTint="@color/grey"
-                    android:textSize="18sp" android:textColor="@color/pale_mauve"/>
+                    android:textSize="18sp" android:textColor="@color/newyellow"/>
             <RadioButton
                     android:text="@string/choix_hard"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" android:id="@+id/rButtonHard" android:layout_weight="1"
                     android:onClick="onRadioButtonClicked"
                     android:buttonTint="@color/grey"
-                    android:textSize="18sp" android:textColor="@color/pale_mauve"/>
+                    android:textSize="18sp" android:textColor="@color/newyellow"/>
             <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" android:id="@+id/rButtonAlcoholo" android:layout_weight="1"
                     android:text="@string/choix_alcoolo"
                     android:buttonTint="@color/grey"
-                    android:onClick="onRadioButtonClicked" android:textSize="18sp" android:textColor="@color/pale_mauve"/>
+                    android:onClick="onRadioButtonClicked" android:textSize="18sp"
+                    android:textColor="@color/newyellow"/>
         </RadioGroup>
         <EditText
                 android:layout_width="wrap_content"
@@ -97,7 +98,7 @@
                 android:textColorHint="@color/grey"
                 android:layout_marginEnd="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:textColor="@color/pale_mauve" android:layout_marginTop="8dp"
+                android:textColor="@color/newyellow" android:layout_marginTop="8dp"
                 app:layout_constraintTop_toBottomOf="@+id/challengeText2"/>
 
         <EditText
@@ -108,7 +109,7 @@
                 android:id="@+id/challengeOrder"
                 android:hint="@string/order_corresponding"
                 android:textColorHint="@color/grey"
-                android:textColor="@color/pale_mauve"
+                android:textColor="@color/newyellow"
                 android:layout_marginEnd="8dp"
                 app:layout_constraintEnd_toEndOf="parent" android:layout_marginStart="8dp"
                 app:layout_constraintStart_toStartOf="parent" android:layout_marginTop="8dp"
