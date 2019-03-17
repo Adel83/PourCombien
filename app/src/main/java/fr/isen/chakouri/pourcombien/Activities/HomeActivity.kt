@@ -2,6 +2,7 @@ package fr.isen.chakouri.pourcombien.Activities
 
 import android.content.Intent
 import android.graphics.Color
+import android.media.MediaPlayer
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Gravity
@@ -10,6 +11,7 @@ import fr.isen.chakouri.pourcombien.Models.Player
 import android.view.ViewGroup
 import android.widget.*
 import fr.isen.chakouri.pourcombien.Managers.ActivityManager
+import fr.isen.chakouri.pourcombien.Managers.SoundManager
 import fr.isen.chakouri.pourcombien.R
 import kotlinx.android.synthetic.main.activity_home.*
 
@@ -25,6 +27,8 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
     var fieldsList: ArrayList<EditText> = ArrayList()
     var deleteList: java.util.ArrayList<ImageView> = ArrayList()
     var layoutsList: ArrayList<LinearLayout> = ArrayList()
+
+    private var soundManager = SoundManager(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -51,7 +55,7 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
         when(v){
             addFieldButton ->
             {
-                // TODO : ajouter la suppresion d'un EditText
+                soundManager.playSoundAlone(SoundManager.YAHOO)
                 fieldsList.add(createEditText())
                 deleteList.add(createDeleteImage())
                 layoutsList.add(createLinearLayout())
@@ -64,6 +68,7 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
                 fieldsList[index+2].visibility = View.GONE
                 layoutsList[index+2].visibility = View.GONE
                 v.visibility = View.GONE
+                soundManager.playSoundAlone(SoundManager.GOODBYE)
                 // effacement du tableau
                 fieldsList.remove(fieldsList[index+2])
                 layoutsList.remove(layoutsList[index+2])
@@ -75,11 +80,6 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
             {
                 val playersList: ArrayList<Player> = createPlayersFromFields()
                 if(playersList.size > 1) {
-                    /*val intent = Intent(this, ModeActivity::class.java)
-                    intent.putParcelableArrayListExtra(
-                        HomeActivity.PLAYERS,
-                        playersList as java.util.ArrayList<out Parcelable>
-                    )*/
                     startActivity(ActivityManager.switchActivity(this, ModeActivity::class.java, ArrayList(), playersList, null))
                 }
                 else {
@@ -99,7 +99,7 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
         editText.setTextColor(Color.WHITE)
         editText.setHintTextColor(Color.GRAY)
         editText.textAlignment = View.TEXT_ALIGNMENT_CENTER
-        editText.hint = " Joueur $numberOfLines"
+        editText.hint = "Joueur $numberOfLines"
         numberOfLines++
         return editText
     }
@@ -114,7 +114,7 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
         // insertion du LinearLayout
         joueursLayout.addView(linearLayout)
 
-        var p = LinearLayout.LayoutParams(1, ViewGroup.LayoutParams.WRAP_CONTENT, if(image == null) 4f else 3f)
+        var p = LinearLayout.LayoutParams(1, ViewGroup.LayoutParams.WRAP_CONTENT, if(image == null) 5f else 4f)
         editText.layoutParams = p
         editText.id = numberOfLines + 1
         linearLayout.addView(editText)
@@ -134,7 +134,7 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
         linearLayout.layoutParams =
                 LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
         linearLayout.id = numberOfLines + 1
-        linearLayout.weightSum = 4f
+        linearLayout.weightSum = 5f
         linearLayout.gravity = Gravity.CENTER_VERTICAL
         return linearLayout
     }
@@ -162,5 +162,10 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
             layoutsList.add(createLinearLayout())
             addLine(fieldsList[i], layoutsList[i],null)
         }
+    }
+
+    override fun onStop(){
+        soundManager.releaseAllSounds()
+        super.onStop()
     }
 }

@@ -30,7 +30,8 @@ class NotMatchActivity : AppCompatActivity(), View.OnClickListener {
         }
 
         // changement d'état du round
-        round.number++
+        if(round.number != RoundState.ONWAITING.convertInt)
+            round.number++
 
         // gestion du bouton suivant
         buttonNextManager()
@@ -43,10 +44,9 @@ class NotMatchActivity : AppCompatActivity(), View.OnClickListener {
         buttonNext.setOnClickListener(this)
         //button home
         homebutton7.setOnClickListener(this)
-
-        // TODO : à voir si on garde le bouton "Suivant"
     }
 
+    // TODO enlever le bouton
     override fun onClick(v: View?) {
         when(v){
             buttonNext, next -> {
@@ -56,8 +56,14 @@ class NotMatchActivity : AppCompatActivity(), View.OnClickListener {
                     FirstChoiceActivity::class.java
                 } else{
                     // failure
-                    if(areThereAnyChallenges())
+                    if(areThereAnyChallenges() || round.number == RoundState.ONWAITING.convertInt) {
+                        if(round.number != RoundState.ONWAITING.convertInt){
+                            round.number = RoundState.ONNEW.convertInt
+                            challengesList = round.nextRound(playersList!!, challengesList!!)
+                        }
+                        round.number = RoundState.ONWAITING.convertInt
                         VersusActivity::class.java
+                    }
                     else
                         HomeActivity::class.java
                 }
@@ -78,16 +84,16 @@ class NotMatchActivity : AppCompatActivity(), View.OnClickListener {
         Toast.makeText(this, "Trop tard... Les jeux sont faits !", Toast.LENGTH_SHORT).show()
     }
 
-    fun buttonNextManager(){
+    private fun buttonNextManager(){
         buttonNext.text = if(round.number == RoundState.ONGOING.convertInt)
             "Vengeance"
         else {
-            if(areThereAnyChallenges())
+            if(areThereAnyChallenges() || round.number == RoundState.ONWAITING.convertInt)
                 "Prochain défi"
             else
                 "Fin de partie"
         }
     }
 
-    fun areThereAnyChallenges() = challengesList?.size!! > 0
+    private fun areThereAnyChallenges() = challengesList?.size!! > 0
 }

@@ -5,6 +5,7 @@ import android.app.ProgressDialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
+import android.os.AsyncTask
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
@@ -29,10 +30,11 @@ import java.util.*
 
 class AddChallengeActivity : AppCompatActivity(), View.OnClickListener {
 
-    private val  PICK_IMAGE_REQUEST = 1234
-
-    //Permission
-    private val STORAGE_PERMISSION_CODE = 1
+    companion object {
+        const val  PICK_IMAGE_REQUEST = 1234
+        //Permission
+        const val STORAGE_PERMISSION_CODE = 1
+    }
 
     private var levelChosen: Level? = null
     private lateinit var database: FirebaseDatabase
@@ -41,8 +43,9 @@ class AddChallengeActivity : AppCompatActivity(), View.OnClickListener {
 
     // pour stockage de l'image
     private var filePath: Uri? = null
-    internal var storage: FirebaseStorage?=null
-    internal var storageReference: StorageReference?=null
+    private var storage: FirebaseStorage?=null
+    private var storageReference: StorageReference?=null
+    private var numberOfRequests: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,8 +57,13 @@ class AddChallengeActivity : AppCompatActivity(), View.OnClickListener {
             finish()
         }
 
-        val buttonRequest = findViewById<View>(R.id.pictureChosen)
-        buttonRequest.setOnClickListener {
+        if(ContextCompat.checkSelfPermission(
+                this,
+                android.Manifest.permission.READ_EXTERNAL_STORAGE
+            ) != PackageManager.PERMISSION_GRANTED)
+            requestStoragePermission()
+
+        pictureChosen.setOnClickListener {
             if (ContextCompat.checkSelfPermission(
                     this,
                     android.Manifest.permission.READ_EXTERNAL_STORAGE
@@ -86,15 +94,18 @@ class AddChallengeActivity : AppCompatActivity(), View.OnClickListener {
         if (v == pictureChosen)
             showFileChooser()
         else if (v == buttonCreateChallenge) {
-            if(fieldsValiditation())
+            if(fieldsValidation())
             {
                 val url: String? = uploadFile()
                 val idRef = myRef.push().key.toString()
                 myRef.child(idRef).setValue(Challenge(0, challengeQuestion.text.toString(), challengeOrder.text.toString(), idRef, levelChosen?.convertInt, url))
             }
+            else
+                Toast.makeText(this, "Merci de remplir tous les champs", Toast.LENGTH_LONG).show()
         }
     }
 
+    @Suppress("DEPRECATION")
     private fun uploadFile(): String? {
         if (filePath != null){
 
@@ -133,7 +144,7 @@ class AddChallengeActivity : AppCompatActivity(), View.OnClickListener {
 
     }
 
-    private fun fieldsValiditation() =
+    private fun fieldsValidation() =
         levelChosen != null && challengeQuestion.text.isNotEmpty() && challengeQuestion.text.isNotBlank()
                 && challengeOrder.text.isNotEmpty() && challengeOrder.text.isNotBlank()
 
@@ -181,15 +192,18 @@ class AddChallengeActivity : AppCompatActivity(), View.OnClickListener {
         ) {
 
             AlertDialog.Builder(this)
-                .setTitle("Permission needed")
-                .setMessage("This permission is needed because of the safety of our user's personal data")
-                .setPositiveButton("ok") { _, _ ->
+                .setTitle("Permission requise")
+                .setMessage("Afin de soumettre l'image de votre défi, il est nécessaire d'autoriser l'application à accéder à votre galerie.")
+                .setPositiveButton("Suivant") { _, _ ->
                     ActivityCompat.requestPermissions(
                         this,
                         arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE), STORAGE_PERMISSION_CODE
                     )
                 }
-                .setNegativeButton("cancel") { dialog, _ -> dialog.dismiss() }
+                .setNegativeButton("Annuler") { dialog, _ ->
+                    dialog.dismiss()
+                    Toast.makeText(this, "Permission non accordée", Toast.LENGTH_SHORT).show()
+                }
                 .create().show()
 
         } else {
@@ -203,10 +217,22 @@ class AddChallengeActivity : AppCompatActivity(), View.OnClickListener {
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
         if (requestCode == STORAGE_PERMISSION_CODE) {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(this, "Permission GRANTED", Toast.LENGTH_SHORT).show()
+                if(numberOfRequests != 0)
+                    showFileChooser()
             } else {
-                Toast.makeText(this, "Permission DENIED", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Permission non accordée", Toast.LENGTH_SHORT).show()
             }
+            numberOfRequests++
         }
+    }
+
+    override fun onRestart(){
+        super.onRestart()
+        numberOfRequests = 0
+        if(ContextCompat.checkSelfPermission(
+                this,
+                android.Manifest.permission.READ_EXTERNAL_STORAGE
+            ) != PackageManager.PERMISSION_GRANTED)
+            requestStoragePermission()
     }
 }

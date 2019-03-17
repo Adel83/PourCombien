@@ -33,7 +33,12 @@ class DefiActivity : AppCompatActivity() {
 
         //button play
         nextScreen.setOnClickListener {
-            if (areThereAnyChallenges()) {
+            if (areThereAnyChallenges() || round.number == RoundState.ONWAITING.convertInt) {
+                if(round.number != RoundState.ONWAITING.convertInt){
+                    round.number = RoundState.ONNEW.convertInt
+                    challengesList = round.nextRound(playersList!!, challengesList!!)
+                }
+                round.number = RoundState.ONWAITING.convertInt
                 startActivity(ActivityManager.switchActivity(
                         this, VersusActivity::class.java,
                         challengesList!!, playersList!!, round
@@ -59,9 +64,9 @@ class DefiActivity : AppCompatActivity() {
         */
     }
 
-    fun areThereAnyChallenges() = challengesList?.size!! > 0
+    private fun areThereAnyChallenges() = challengesList?.size!! > 0
 
-    fun loadImage(url: String?) {
+    private fun loadImage(url: String?) {
         if(url != null) {
             Picasso
                 .get()
@@ -76,5 +81,9 @@ class DefiActivity : AppCompatActivity() {
                     }
                 })
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
     }
 }

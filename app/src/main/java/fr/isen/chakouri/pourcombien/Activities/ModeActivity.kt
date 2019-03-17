@@ -98,4 +98,9 @@ class ModeActivity : AppCompatActivity(), View.OnClickListener {
 
         myRef.addListenerForSingleValueEvent(messageListener)
     }
+
+    override fun onResume() {
+        super.onResume()
+        challengesList = ArrayList()
+    }
 }

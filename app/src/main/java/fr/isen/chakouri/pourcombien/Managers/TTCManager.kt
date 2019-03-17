@@ -38,7 +38,7 @@ class TTCManager(val context: Context, var textToSpeech: TextToSpeech? = null, p
                 OPPONENT -> textToSpeech?.speak(round.opponent?.username, TextToSpeech.QUEUE_FLUSH, null, type)
                 PROVOCATION ->
                 {
-                    val text: String = round.challenger?.username + "est défié par... " + round.opponent?.username
+                    val text: String = round.challenger?.username + "\ncontre\n" + round.opponent?.username
                     textToSpeech?.speak(text, TextToSpeech.QUEUE_FLUSH, null, type)
                 }
             }

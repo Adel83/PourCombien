@@ -69,4 +69,7 @@
     <string name="text_splash_screen">Oserez-vous relever tous les challenges ?</string>
     <string name="add_challenge">Ajouter un défi</string>
     <string name="order_corresponding">Ordre correspondant</string>
+    <string name="instructions_click_to_play">Tapez pour découvrir le duel...</string>
+    <string name="authors_names">Adel CHAKOURI, Théo DESJARDINS, Julien LUNA, Julien PONS</string>
+    <string name="tajj_text">TAJJ Development</string>
 </resources>

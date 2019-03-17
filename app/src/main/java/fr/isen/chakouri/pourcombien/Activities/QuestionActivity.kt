@@ -73,6 +73,9 @@ class QuestionActivity : AppCompatActivity(), View.OnClickListener {
             }
         })
 
+        // son de fond
+        soundManager.playSoundInLoop(SoundManager.QUESTION_CHOICE)
+
         // image reload
         reloadImage.setOnClickListener(this)
         //button play
@@ -86,9 +89,14 @@ class QuestionActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View){
         when(v){
             reloadImage -> changeChallenge()
-            buttonPlay2 -> beginChallenge()
+            buttonPlay2 ->
+            {
+                soundManager.releaseAllSounds()
+                beginChallenge()
+            }
             homebutton2 ->
             {
+                soundManager.releaseAllSounds()
                 startActivity(ActivityManager.backHome(this))
                 finish()
             }
@@ -122,6 +130,7 @@ class QuestionActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun changeChallenge() {
         if (challengesList != null && challengesList!!.size > 0) {
+            soundManager.playSound(SoundManager.CHALLENGE_SWITCH)
             challengesList = round.getChallenge(challengesList!!)
             // mise à jour du défi
             questionText.text = StringBuilder().append(round.challenge?.question).append(" ?")
@@ -138,12 +147,13 @@ class QuestionActivity : AppCompatActivity(), View.OnClickListener {
         super.onResume()
         // Add the following line to register the Session Manager Listener onResume
         mSensorManager.registerListener(mShakeDetector, mAccelerometer, SensorManager.SENSOR_DELAY_UI)
+        soundManager.restartAllSounds()
     }
 
     public override fun onPause() {
         // Add the following line to unregister the Sensor Manager onPause
         mSensorManager.unregisterListener(mShakeDetector)
-        soundManager.releaseAllSounds()
+        soundManager.pauseAllSounds()
         super.onPause()
     }
 
@@ -166,10 +176,5 @@ class QuestionActivity : AppCompatActivity(), View.OnClickListener {
         }
         // réactivation du click
         imageLike.isEnabled = true
-    }
-
-    override fun onStop(){
-        soundManager.releaseAllSounds()
-        super.onStop()
     }
 }

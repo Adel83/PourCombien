@@ -1,6 +1,6 @@
 package fr.isen.chakouri.pourcombien.Models
 
-class DatabaseState(){
+class DatabaseState{
     companion object Like {
         const val ACTION_CANCELLED = 1
         const val READ_LIKE_FAILURE = 2
