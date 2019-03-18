@@ -16,6 +16,14 @@ class SoundManager(val context: Context, var mediaPlayersList: ArrayList<MediaPl
         const val IMPACT = R.raw.impact
         const val QUESTION_CHOICE = R.raw.question_choice
         const val CHALLENGE_SWITCH = R.raw.challenge_switch
+        const val THRILLER_LAUGH = R.raw.laugh_0
+        const val INTRO = R.raw.intro
+        const val PLAYER_CHOICE = R.raw.player_choice
+        const val RULES = R.raw.rules
+        const val MAIN_THEME = R.raw.main_theme
+        const val MODE = R.raw.mode
+        const val ADD_CHALLENGE = R.raw.add_challenge
+        const val RESULT = R.raw.result
     }
 
     fun playSound(soundId: Int){
@@ -43,6 +51,14 @@ class SoundManager(val context: Context, var mediaPlayersList: ArrayList<MediaPl
 
     fun playSoundAlone(soundId: Int){
         releaseAllSounds()
+        playSound(soundId)
+    }
+
+    fun playSingleSoundWithTheme(soundId: Int){
+        if(mediaPlayersList.size > 1){
+            for(index in 1 until mediaPlayersList.size)
+                releaseSound(mediaPlayersList[index])
+        }
         playSound(soundId)
     }
 

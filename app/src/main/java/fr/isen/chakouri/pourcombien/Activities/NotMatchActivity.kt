@@ -35,8 +35,23 @@ class NotMatchActivity : AppCompatActivity(), View.OnClickListener {
 
         // gestion du bouton suivant
         buttonNextManager()
+        soundManager.playSoundInLoop(SoundManager.RESULT)
+        // affichage d'un texte explicite concernant la suite des évènements
+        notMatchOrder.text = when(round.number) {
+            RoundState.ONGOING.convertInt ->
+            {
+                StringBuilder().append(round.challenger?.username).append(", venge-toi !")
+            }
+            RoundState.ONFAILURE.convertInt ->
+            {
+                if(areThereAnyChallenges())
+                    "Il n'y aura pas de match pour ce défi... Dommage !"
+                else
+                    "Pas de match pour ce défi... Et il ne semble plus y en avoir en stock :("
+            }
+            else -> StringBuilder().append(round.challenger?.username).append("clique sur l'écran")
+        }
 
-        notMatchOrder.text = StringBuilder().append(round.challenger?.username).append(", venge-toi !")
         // soundtrack lié à un game over
         soundManager.playSound(SoundManager.GAMEOVER)
 
@@ -65,7 +80,7 @@ class NotMatchActivity : AppCompatActivity(), View.OnClickListener {
                         VersusActivity::class.java
                     }
                     else
-                        HomeActivity::class.java
+                        EndGameActivity::class.java
                 }
                 startActivity(
                     ActivityManager.switchActivity(this, nextActivity,
@@ -96,4 +111,14 @@ class NotMatchActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun areThereAnyChallenges() = challengesList?.size!! > 0
+
+    override fun onPause() {
+        super.onPause()
+        soundManager.pauseAllSounds()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        soundManager.restartAllSounds()
+    }
 }

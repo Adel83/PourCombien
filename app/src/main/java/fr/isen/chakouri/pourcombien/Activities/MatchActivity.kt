@@ -28,12 +28,12 @@ class MatchActivity : AppCompatActivity(), View.OnClickListener {
             round = intent.getParcelableExtra(HomeActivity.ROUND)
         }
 
-        matchOrder.text = StringBuilder().append(round.challenger?.username).append(",\nassume et releve le defi")
+        matchOrder.text = StringBuilder().append(round.challenger?.username).append(",\nassume et relève le défi")
         // changement d'état du round
         round.number = RoundState.ONSUCCESS.convertInt
         // soundtrack de match
         soundManager.playSound(SoundManager.MATCH)
-
+        soundManager.playSoundInLoop(SoundManager.RESULT)
         // étape suivante (vers activité défi)
         next2.setOnClickListener(this)
         //button home
@@ -42,12 +42,18 @@ class MatchActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View){
         when(v){
-            next2 ->
+            next2 -> {
+                soundManager.releaseAllSounds()
                 startActivity(
-                    ActivityManager.switchActivity(this, DefiActivity::class.java,
-                    challengesList!!, playersList!!, round))
+                    ActivityManager.switchActivity(
+                        this, DefiActivity::class.java,
+                        challengesList!!, playersList!!, round
+                    )
+                )
+            }
             homebutton6 ->
             {
+                soundManager.releaseAllSounds()
                 startActivity(ActivityManager.backHome(this))
                 finish()
             }
@@ -57,5 +63,15 @@ class MatchActivity : AppCompatActivity(), View.OnClickListener {
     override fun onBackPressed() {
         // retour interdit
         Toast.makeText(this, "Trop tard... Les jeux sont faits !", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onPause(){
+        soundManager.pauseAllSounds()
+        super.onPause()
+    }
+
+    override fun onResume() {
+        soundManager.restartAllSounds()
+        super.onResume()
     }
 }

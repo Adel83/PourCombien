@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import com.squareup.picasso.Picasso
 import fr.isen.chakouri.pourcombien.Managers.ActivityManager
+import fr.isen.chakouri.pourcombien.Managers.SoundManager
 import fr.isen.chakouri.pourcombien.Models.*
 import fr.isen.chakouri.pourcombien.R
 import kotlinx.android.synthetic.main.activity_defi.*
@@ -15,6 +16,7 @@ class DefiActivity : AppCompatActivity() {
     private var challengesList: ArrayList<Challenge>? = null
     private var playersList: ArrayList<Player>? = null
     private var round = Round(RoundState.ONSUCCESS.convertInt)
+    private var soundManager = SoundManager(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +35,7 @@ class DefiActivity : AppCompatActivity() {
 
         //button play
         nextScreen.setOnClickListener {
+            soundManager.releaseAllSounds()
             if (areThereAnyChallenges() || round.number == RoundState.ONWAITING.convertInt) {
                 if(round.number != RoundState.ONWAITING.convertInt){
                     round.number = RoundState.ONNEW.convertInt
@@ -52,6 +55,7 @@ class DefiActivity : AppCompatActivity() {
 
         //button home
         homebutton5.setOnClickListener {
+            soundManager.releaseAllSounds()
             startActivity(ActivityManager.backHome(this))
             finish()
         }
@@ -62,6 +66,8 @@ class DefiActivity : AppCompatActivity() {
             loadingPanel.visibility = View.GONE
         }, 1500)
         */
+        soundManager.playSound(SoundManager.THRILLER_LAUGH)
+        soundManager.playSoundInLoop(SoundManager.RESULT)
     }
 
     private fun areThereAnyChallenges() = challengesList?.size!! > 0
@@ -83,7 +89,13 @@ class DefiActivity : AppCompatActivity() {
         }
     }
 
+    override fun onPause(){
+        soundManager.pauseAllSounds()
+        super.onPause()
+    }
+
     override fun onResume() {
+        soundManager.restartAllSounds()
         super.onResume()
     }
 }

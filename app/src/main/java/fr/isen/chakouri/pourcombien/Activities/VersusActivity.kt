@@ -193,6 +193,10 @@ class VersusActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         round.number = RoundState.ONWAITING.convertInt
+        challengeAnnunciated = true // évite d'annoncer le challenge sur la page précédente
+        forceDisplay()
+        soundManager.releaseAllSounds()
+        ttcManager.stopSpeech()
         super.onBackPressed()
     }
 }
