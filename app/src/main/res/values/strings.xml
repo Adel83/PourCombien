@@ -49,16 +49,16 @@
     <string name="default_player2_name">Joueur 2</string>
     <string name="default_choice_number">8</string>
     <string name="default_challenge_question">Casses une pomme avec ta tete ?</string>
-    <string name="default_challenge_order">Casses une pomme avec ta tete</string>
-    <string name="default_match_order">Joueur 1, assume et relève le defi</string>
+    <string name="default_challenge_order">Casse une pomme avec ta tete</string>
+    <string name="default_match_order">Joueur 1, assume et relève le défi</string>
     <string name="default_not_match_order">Joueur 2, venge-toi !</string>
 
     <!-- Useful strings -->
     <string name="next_step">Suivant</string>
-    <string name="refresh_hint">(secoue ton tel pour changer de defi)</string>
+    <string name="refresh_hint">(secoue ton tel pour changer de défi)</string>
     <string name="pour_combien_tu">Pour combien tu...</string>
     <string name="instructions_number_choice">Choisis un nombre :</string>
-    <string name="instructions_challenge">Relève le defi</string>
+    <string name="instructions_challenge">Relève le défi</string>
     <string name="no_match_declaration">Pas Match !</string>
     <string name="match_declaration">Match !</string>
     <string name="text_play">Jouer</string>

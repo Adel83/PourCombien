@@ -5,7 +5,6 @@ import android.app.ProgressDialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
-import android.os.AsyncTask
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
@@ -21,6 +20,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import fr.isen.chakouri.pourcombien.Managers.ActivityManager
+import fr.isen.chakouri.pourcombien.Managers.SoundManager
 import fr.isen.chakouri.pourcombien.Models.Challenge
 import fr.isen.chakouri.pourcombien.Models.Level
 import fr.isen.chakouri.pourcombien.R
@@ -46,6 +46,7 @@ class AddChallengeActivity : AppCompatActivity(), View.OnClickListener {
     private var storage: FirebaseStorage?=null
     private var storageReference: StorageReference?=null
     private var numberOfRequests: Int = 0
+    private var soundManager = SoundManager(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -234,5 +235,15 @@ class AddChallengeActivity : AppCompatActivity(), View.OnClickListener {
                 android.Manifest.permission.READ_EXTERNAL_STORAGE
             ) != PackageManager.PERMISSION_GRANTED)
             requestStoragePermission()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        soundManager.releaseAllSounds()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        soundManager.playSoundInLoop(SoundManager.ADD_CHALLENGE)
     }
 }

@@ -2,7 +2,6 @@ package fr.isen.chakouri.pourcombien.Activities
 
 import android.content.Intent
 import android.graphics.Color
-import android.media.MediaPlayer
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Gravity
@@ -55,7 +54,7 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
         when(v){
             addFieldButton ->
             {
-                soundManager.playSoundAlone(SoundManager.YAHOO)
+                soundManager.playSingleSoundWithTheme(SoundManager.YAHOO)
                 fieldsList.add(createEditText())
                 deleteList.add(createDeleteImage())
                 layoutsList.add(createLinearLayout())
@@ -68,7 +67,7 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
                 fieldsList[index+2].visibility = View.GONE
                 layoutsList[index+2].visibility = View.GONE
                 v.visibility = View.GONE
-                soundManager.playSoundAlone(SoundManager.GOODBYE)
+                soundManager.playSingleSoundWithTheme(SoundManager.GOODBYE)
                 // effacement du tableau
                 fieldsList.remove(fieldsList[index+2])
                 layoutsList.remove(layoutsList[index+2])
@@ -164,8 +163,13 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    override fun onStop(){
+    override fun onPause(){
         soundManager.releaseAllSounds()
-        super.onStop()
+        super.onPause()
+    }
+
+    override fun onResume() {
+        soundManager.playSoundInLoop(SoundManager.MAIN_THEME)
+        super.onResume()
     }
 }

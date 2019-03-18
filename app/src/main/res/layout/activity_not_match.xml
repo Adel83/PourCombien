@@ -46,13 +46,14 @@
     <TextView
             android:text="@string/default_player2_name"
             android:layout_width="wrap_content"
-            android:layout_height="39dp"
+            android:layout_height="wrap_content"
             android:id="@+id/notMatchOrder" android:textSize="25sp"
             android:fontFamily="@font/fresh_marker" android:textColor="@color/pale_mauve"
             android:layout_marginEnd="8dp"
             app:layout_constraintEnd_toEndOf="parent" android:layout_marginStart="8dp"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginTop="64dp"
-            app:layout_constraintTop_toBottomOf="@+id/imageView3"/>
+            app:layout_constraintTop_toBottomOf="@+id/imageView3" android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent" android:textAlignment="center"/>
 
     <Button
             android:text="@string/next_step"
@@ -64,5 +65,5 @@
             app:layout_constraintEnd_toEndOf="parent" android:layout_marginStart="8dp"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginTop="8dp"
             app:layout_constraintTop_toBottomOf="@+id/notMatchOrder" android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintBottom_toBottomOf="parent" android:visibility="gone"/>
 </android.support.constraint.ConstraintLayout>

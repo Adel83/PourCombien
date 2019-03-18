@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.Toast
 import com.google.firebase.database.*
 import fr.isen.chakouri.pourcombien.Managers.ActivityManager
+import fr.isen.chakouri.pourcombien.Managers.SoundManager
 import fr.isen.chakouri.pourcombien.Models.*
 import fr.isen.chakouri.pourcombien.R
 import kotlinx.android.synthetic.main.activity_mode.*
@@ -19,6 +20,8 @@ class ModeActivity : AppCompatActivity(), View.OnClickListener {
     private var levelChosen: Level? = null
     private var challengesList: ArrayList<Challenge> = ArrayList()
     private var playersList: ArrayList<Player> = ArrayList()
+
+    private var soundManager = SoundManager(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -99,8 +102,14 @@ class ModeActivity : AppCompatActivity(), View.OnClickListener {
         myRef.addListenerForSingleValueEvent(messageListener)
     }
 
+    override fun onPause() {
+        super.onPause()
+        soundManager.releaseAllSounds()
+    }
+
     override fun onResume() {
         super.onResume()
         challengesList = ArrayList()
+        soundManager.playSoundInLoop(SoundManager.MODE)
     }
 }
