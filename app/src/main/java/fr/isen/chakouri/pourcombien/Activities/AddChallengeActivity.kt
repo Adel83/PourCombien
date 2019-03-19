@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.ProgressDialog
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -11,6 +12,7 @@ import android.provider.MediaStore
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AlertDialog
+import android.util.DisplayMetrics
 import android.util.Log
 import android.view.View
 import android.widget.RadioButton
@@ -147,7 +149,7 @@ class AddChallengeActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun fieldsValidation() =
         levelChosen != null && challengeQuestion.text.isNotEmpty() && challengeQuestion.text.isNotBlank()
-                && challengeOrder.text.isNotEmpty() && challengeOrder.text.isNotBlank()
+                && challengeOrder.text.isNotEmpty() && challengeOrder.text.isNotBlank() && filePath != null
 
     fun onRadioButtonClicked(view: View) {
         if(view is RadioButton) {
@@ -178,7 +180,13 @@ class AddChallengeActivity : AppCompatActivity(), View.OnClickListener {
             filePath = data.data
             try{
                 val bitmap = MediaStore.Images.Media.getBitmap(contentResolver,filePath)
-                pictureChosen!!.setImageBitmap(bitmap)
+                val displayMetrics = DisplayMetrics()
+                windowManager.defaultDisplay.getMetrics(displayMetrics)
+                val widthScale: Float =
+                    if(bitmap.width < displayMetrics.widthPixels) 1f
+                    else displayMetrics.widthPixels.div(bitmap.width.toFloat())
+                val bitmapResized = Bitmap.createScaledBitmap(bitmap, (bitmap.width * widthScale).toInt(), (bitmap.height * widthScale).toInt(),true)
+                pictureChosen!!.setImageBitmap(bitmapResized)
             }catch (e: IOException){
                 e.printStackTrace()
             }
