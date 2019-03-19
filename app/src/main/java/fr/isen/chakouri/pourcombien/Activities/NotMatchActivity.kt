@@ -61,7 +61,6 @@ class NotMatchActivity : AppCompatActivity(), View.OnClickListener {
         homebutton7.setOnClickListener(this)
     }
 
-    // TODO enlever le bouton
     override fun onClick(v: View?) {
         when(v){
             buttonNext, next -> {

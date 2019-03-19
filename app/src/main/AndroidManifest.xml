@@ -58,14 +58,6 @@
                 android:screenOrientation="portrait">
         </activity>
         <activity
-                android:name=".Activities.NextStepActivity"
-                android:screenOrientation="portrait">
-        </activity>
-        <activity
-                android:name=".Activities.DownloadImageActivity"
-                android:screenOrientation="portrait">
-        </activity>
-        <activity
                 android:name=".Activities.HomeActivity"
                 android:screenOrientation="portrait">
 
@@ -79,23 +71,7 @@
                 android:screenOrientation="portrait">
         </activity>
         <activity
-                android:name=".Activities.GetChallengesActivity"
-                android:screenOrientation="portrait">
-        </activity>
-        <activity
-                android:name=".Activities.LogInActivity"
-                android:screenOrientation="portrait">
-        </activity>
-        <activity
                 android:name=".Activities.ModeActivity"
-                android:screenOrientation="portrait">
-        </activity>
-        <activity
-                android:name=".Activities.SignUpActivity"
-                android:screenOrientation="portrait">
-        </activity>
-        <activity
-                android:name=".Activities.UploadImageActivity"
                 android:screenOrientation="portrait">
         </activity>
     </application>

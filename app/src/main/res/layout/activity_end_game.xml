@@ -20,7 +20,7 @@
                 android:layout_marginTop="16dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="16dp"
                 android:contentDescription="@string/home_button"/>
         <Button
-                android:text="Ajouter un defi"
+                android:text="@string/add_challenge"
                 android:layout_width="143dp"
                 android:layout_height="60dp"
                 android:id="@+id/addchallenge4"
@@ -28,30 +28,31 @@
                 android:textColor="@color/pale_mauve"
                 android:layout_marginBottom="44dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_marginTop="24dp" app:layout_constraintTop_toBottomOf="@+id/textView8"
+                android:layout_marginTop="24dp" app:layout_constraintTop_toBottomOf="@+id/textNoMoreChallenge"
                 app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
         />
         <ImageView
                 android:layout_width="80dp"
                 android:layout_height="56dp" app:srcCompat="@drawable/logo"
-                android:id="@+id/imageView15" app:layout_constraintStart_toStartOf="parent"
+                android:id="@+id/logoPourCombien" app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 android:contentDescription="@string/pour_combien_logo" android:layout_marginTop="10dp"
                 android:layout_marginStart="8dp"/>
         <ImageView
                 android:layout_width="262dp"
                 android:layout_height="424dp" app:srcCompat="@drawable/endgame"
-                android:id="@+id/imageView16" android:layout_marginTop="16dp"
-                app:layout_constraintTop_toBottomOf="@+id/imageView15" app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                android:id="@+id/imageEndGame" android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/logoPourCombien" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:contentDescription="@string/end_game_image"/>
         <TextView
-                android:text="Nous n'avons plus de défis en stock... Pour le moment !"
+                android:text="@string/no_more_challenge"
                 android:layout_width="313dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/textView8" android:textSize="24sp"
+                android:id="@+id/textNoMoreChallenge" android:textSize="24sp"
                 android:fontFamily="@font/fresh_marker" android:textAlignment="center"
                 app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="16dp" app:layout_constraintTop_toBottomOf="@+id/imageView16"
+                android:layout_marginTop="16dp" app:layout_constraintTop_toBottomOf="@+id/imageEndGame"
                 android:textColor="@color/pale_mauve"/>
     </android.support.constraint.ConstraintLayout>
 </ScrollView>
