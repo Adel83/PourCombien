@@ -86,19 +86,6 @@
                     android:buttonTint="@color/grey"
                     android:onClick="onRadioButtonClicked" android:textSize="18sp" android:textColor="@color/pale_mauve"/>
         </RadioGroup>
-        <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="textMultiLine"
-                android:ems="10"
-                android:id="@+id/challengeQuestion"
-                android:layout_marginStart="8dp"
-                app:layout_constraintStart_toStartOf="parent" android:hint="@string/challenge"
-                android:textColorHint="@color/grey"
-                android:layout_marginEnd="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:textColor="@color/pale_mauve" android:layout_marginTop="8dp"
-                app:layout_constraintTop_toBottomOf="@+id/challengeText2" android:autofillHints=""/>
 
         <EditText
                 android:layout_width="wrap_content"
@@ -115,8 +102,8 @@
                 app:layout_constraintTop_toBottomOf="@+id/challengeText3" android:autofillHints=""/>
 
         <ImageButton
-                android:layout_width="102dp"
-                android:layout_height="105dp" app:srcCompat="@android:drawable/ic_menu_camera"
+                android:layout_width="200dp"
+                android:layout_height="200dp" app:srcCompat="@android:drawable/ic_menu_camera"
                 android:id="@+id/pictureChosen"
                 android:layout_marginTop="16dp"
                 app:layout_constraintTop_toBottomOf="@+id/challengeOrder" app:layout_constraintEnd_toEndOf="parent"
@@ -124,6 +111,19 @@
                 android:layout_marginStart="8dp"
                 android:contentDescription="@string/uploaded_image"/>
 
+        <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
+                android:ems="10"
+                android:id="@+id/challengeQuestion"
+                android:layout_marginStart="8dp"
+                app:layout_constraintStart_toStartOf="parent" android:hint="@string/challenge"
+                android:textColorHint="@color/grey"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:textColor="@color/pale_mauve" android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/challengeText2" android:autofillHints=""/>
         <Button
                 android:text="@string/valider"
                 android:layout_width="wrap_content"

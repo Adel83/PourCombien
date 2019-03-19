@@ -42,6 +42,7 @@
     <string name="choose_mode_image">Bulle de dialogue demandant au joueur de choisir son mode de jeu</string>
     <string name="understood_image">Bulle de dialogue demandant au joueur s\'il a compris les règles du jeu</string>
     <string name="uploaded_image">Image chargée depuis la galerie de l\'utilisateur</string>
+    <string name="end_game_image">Bulle de dialogue annonçant une fin de partie</string>
 
     <!-- Default strings -->
     <string name="default_number_like">26</string>
@@ -72,4 +73,5 @@
     <string name="instructions_click_to_play">Tapez pour découvrir le duel...</string>
     <string name="authors_names">Adel CHAKOURI, Théo DESJARDINS, Julien LUNA, Julien PONS</string>
     <string name="tajj_text">TAJJ Development</string>
+    <string name="no_more_challenge">Nous n\'avons plus de défis en stock... Pour le moment !</string>
 </resources>
