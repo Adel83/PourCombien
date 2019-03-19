@@ -149,7 +149,7 @@ class AddChallengeActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun fieldsValidation() =
         levelChosen != null && challengeQuestion.text.isNotEmpty() && challengeQuestion.text.isNotBlank()
-                && challengeOrder.text.isNotEmpty() && challengeOrder.text.isNotBlank()
+                && challengeOrder.text.isNotEmpty() && challengeOrder.text.isNotBlank() && filePath != null
 
     fun onRadioButtonClicked(view: View) {
         if(view is RadioButton) {
