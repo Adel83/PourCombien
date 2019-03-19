@@ -54,11 +54,15 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
         when(v){
             addFieldButton ->
             {
-                soundManager.playSingleSoundWithTheme(SoundManager.YAHOO)
-                fieldsList.add(createEditText())
-                deleteList.add(createDeleteImage())
-                layoutsList.add(createLinearLayout())
-                addLine(fieldsList.last(), layoutsList.last(), deleteList.last())
+                if(fieldsList.size < 6) {
+                    soundManager.playSingleSoundWithTheme(SoundManager.YAHOO)
+                    fieldsList.add(createEditText())
+                    deleteList.add(createDeleteImage())
+                    layoutsList.add(createLinearLayout())
+                    addLine(fieldsList.last(), layoutsList.last(), deleteList.last())
+                }
+                else
+                    Toast.makeText(this, "6 joueurs au maximum", Toast.LENGTH_SHORT).show()
             }
             in deleteList -> {
                 //Toast.makeText(this, "supprime", Toast.LENGTH_SHORT).show()
@@ -82,7 +86,7 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
                     startActivity(ActivityManager.switchActivity(this, ModeActivity::class.java, ArrayList(), playersList, null))
                 }
                 else {
-                    Toast.makeText(this, "2 joueurs requis minimum", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "2 joueurs requis au minimum", Toast.LENGTH_SHORT).show()
                 }
             }
             addchallenge ->

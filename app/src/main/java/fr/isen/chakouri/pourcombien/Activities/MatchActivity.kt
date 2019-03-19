@@ -1,7 +1,10 @@
 package fr.isen.chakouri.pourcombien.Activities
 
+import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.os.VibrationEffect
+import android.os.Vibrator
 import android.view.View
 import android.widget.Toast
 import fr.isen.chakouri.pourcombien.Managers.ActivityManager
@@ -38,6 +41,11 @@ class MatchActivity : AppCompatActivity(), View.OnClickListener {
         next2.setOnClickListener(this)
         //button home
         homebutton6.setOnClickListener(this)
+
+        // vibreur
+        val vibrator: Vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+        @Suppress("DEPRECATION")
+        vibrator.vibrate(longArrayOf(100,200,100,400,100,1000),-1)
     }
 
     override fun onClick(v: View){
